@@ -1,42 +1,33 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import "./App.css";
+import React, { useState } from "react";
+import { useTextSelection } from "@mantine/hooks";
 
-function App() {
-  const [count, setCount] = useState(0);
+import { Container, Stack, Text, Textarea, Title } from "@mantine/core";
+
+interface Props {
+  // rootElement: HTMLElement;
+  value: string;
+}
+
+function App({ value }: Props) {
+  console.log(
+    "APP"
+    // window.getSelection()?.toString(),
+    // (rootElement.shadowRoot as any).getSelection()
+  );
+
+  const onTextAreaChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    console.log("value:", e.target.value);
+    // setValue(e.target.value);
+  };
 
   return (
-    <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img
-            src={chrome.runtime.getURL("vite.svg")}
-            className="logo"
-            alt="Vite logo"
-          />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img
-            src={chrome.runtime.getURL(reactLogo)}
-            className="logo react"
-            alt="React logo"
-          />
-        </a>
-      </div>
-      <h1>WonderAI Chrome Extension BITCH!</h1>
-
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </div>
+    <Container size="xs" px="xs">
+      <Title order={1}>WonderAI Chrome Extension</Title>
+      <Stack>
+        <Text>This is normal text by Mantine.dev package</Text>
+        <Textarea value={value} onChange={onTextAreaChange} />
+      </Stack>
+    </Container>
   );
 }
 
