@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@emotion/react": "^11.10.5",
+    "@floating-ui/react": "^0.19.1",
     "@mantine/core": "^5.10.3",
     "@mantine/hooks": "^5.10.3",
     "react": "^18.2.0",
