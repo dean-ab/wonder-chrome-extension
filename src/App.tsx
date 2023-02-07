@@ -4,6 +4,7 @@ import { useTextSelection } from "./hooks/useTextSelection";
 import {
   autoUpdate,
   flip,
+  FloatingOverlay,
   FloatingPortal,
   offset,
   shift,
@@ -42,8 +43,6 @@ function App() {
       }),
       shift({ padding: 10 }),
     ],
-    strategy: "fixed",
-    whileElementsMounted: autoUpdate,
   });
 
   const text = selection.textContent;
@@ -64,9 +63,9 @@ function App() {
   return (
     <>
       <input value={"hello world"} />
-      <blockquote contentEditable="true">
+      {/* <blockquote contentEditable="true">
         <p>Edit this content to add your own quote</p>
-      </blockquote>
+      </blockquote> */}
       <ul style={{ border: "1px solid white" }}>
         <p>Mantine Selection: {text}</p>
         <p>

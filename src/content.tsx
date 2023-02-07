@@ -145,38 +145,38 @@ function initializeWonderAppWithoutShadow() {
 }
 
 function mountApp() {
-  ReactDOM.createRoot(reactRoot).render(
-    <React.StrictMode>
-      <MantineProvider
-        withNormalizeCSS
-        withGlobalStyles
-        emotionCache={emotionCache}
-        theme={{
-          colorScheme: "light",
-          colors: {
-            deepBlue: ["#E9EDFC", "#C1CCF6", "#99ABF0"],
-            blue: ["#E9EDFC", "#C1CCF6", "#99ABF0"],
-          },
+  ReactDOM.createRoot(reactRoot).render(<App />);
+  //   <React.StrictMode>
+  //     <MantineProvider
+  //       withNormalizeCSS
+  //       withGlobalStyles
+  //       emotionCache={emotionCache}
+  //       theme={{
+  //         colorScheme: "light",
+  //         colors: {
+  //           deepBlue: ["#E9EDFC", "#C1CCF6", "#99ABF0"],
+  //           blue: ["#E9EDFC", "#C1CCF6", "#99ABF0"],
+  //         },
 
-          shadows: {
-            md: "1px 1px 3px rgba(0, 0, 0, .25)",
-            xl: "5px 5px 3px rgba(0, 0, 0, .25)",
-          },
+  //         shadows: {
+  //           md: "1px 1px 3px rgba(0, 0, 0, .25)",
+  //           xl: "5px 5px 3px rgba(0, 0, 0, .25)",
+  //         },
 
-          headings: {
-            fontFamily: "Roboto, sans-serif",
-            sizes: {
-              h1: { fontSize: 30 },
-            },
-          },
-        }}
-      >
-        <HighlightManager host={host}>
-          <App rootElement={host} />
-        </HighlightManager>
-      </MantineProvider>
-    </React.StrictMode>
-  );
+  //         headings: {
+  //           fontFamily: "Roboto, sans-serif",
+  //           sizes: {
+  //             h1: { fontSize: 30 },
+  //           },
+  //         },
+  //       }}
+  //     >
+  //       <HighlightManager host={host}>
+  //         <App rootElement={host} />
+  //       </HighlightManager>
+  //     </MantineProvider>
+  //   </React.StrictMode>
+  // );
 }
 
 function unmountApp() {
