@@ -1,94 +1,16 @@
 import React, { useEffect, useRef } from "react";
-import { MantineProvider, createEmotionCache } from "@mantine/core";
 import ReactDOM from "react-dom/client";
-import App from "./App";
 import { createPortal, unmountComponentAtNode } from "react-dom";
-import { HighlightManager } from "./Highlighter";
+import { Launcher } from "./Launcher";
 
-import { bootstrap } from "./WonderApp";
+export function bootstrap() {
+  const hostElement = document.createElement("div");
+  hostElement.setAttribute("id", "wonder-app");
 
-bootstrap();
+  document.body.appendChild(hostElement);
 
-// const ID = "wonder-highlighter";
-
-// const wonderHighlighter = document.createElement("div");
-// wonderHighlighter.id = ID;
-
-// const setMarkerPosition = (style: any) => {
-//   console.log("setMarkerPosition", style);
-//   if (style.background) {
-//     wonderHighlighter.style.background = style.background;
-//   }
-
-//   if (style.left) {
-//     wonderHighlighter.style.left = `${style.left}px`;
-//   }
-
-//   if (style.right) {
-//     wonderHighlighter.style.right = `${style.right}px`;
-//   }
-
-//   if (style.top) {
-//     wonderHighlighter.style.top = `${style.top}px`;
-//   }
-
-//   if (style.bottom) {
-//     wonderHighlighter.style.bottom = `${style.bottom}px`;
-//   }
-
-//   if (style.position) {
-//     wonderHighlighter.style.position = style.position;
-//   }
-
-//   if (style.display) {
-//     wonderHighlighter.style.display = style.display;
-
-//     // TODO: Refactor this thing
-//     if (style.display === "none") {
-//       unmountApp();
-//     } else {
-//       mountApp();
-//     }
-//   }
-// };
-
-// const getSelectedText = () => window?.getSelection()?.toString();
-
-// document.addEventListener("click", () => {
-//   const selectedText = getSelectedText();
-
-//   if (selectedText && selectedText?.length > 0) {
-//     setMarkerPosition(getMarkerPosition());
-//   }
-// });
-
-// document.addEventListener("selectionchange", () => {
-//   const selectedText = getSelectedText();
-
-//   if (selectedText?.length === 0) {
-//     setMarkerPosition({ display: "none", background: "red" });
-//   }
-// });
-
-// function getMarkerPosition() {
-//   const selection = window?.getSelection();
-//   if (!selection) return;
-
-//   // @ts-ignore
-//   const rangeBounds = selection
-//     .getRangeAt(selection.rangeCount - 1)
-//     .getBoundingClientRect();
-
-//   console.log("RangeBound", rangeBounds);
-//   return {
-//     // Substract width of marker button -> 40px / 2 = 20
-//     left: String(rangeBounds.left + window.scrollX),
-//     top: String(rangeBounds.top + window.scrollY),
-//     display: "flex",
-//     position: "absolute",
-//     background: "green",
-//   };
-// }
+  ReactDOM.createRoot(hostElement).render(<Launcher />);
+}
 
 // const host = document.createElement("div");
 // const reactRoot = document.createElement("div");
@@ -137,7 +59,13 @@ bootstrap();
 // }
 
 // function initializeWonderAppWithoutShadow() {
-//   document.body.appendChild(reactRoot);
+//   // get our shadow HOST
+//   host.id = "wonder-shadow-root";
+//   const shadow = host.attachShadow({ mode: "open" });
+
+//   shadow.appendChild(emotionRoot);
+//   shadow.appendChild(reactRoot);
+//   document.body.appendChild(host);
 
 //   mountApp();
 // }

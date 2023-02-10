@@ -10,6 +10,8 @@ import {
   shift,
   useFloating,
 } from "@floating-ui/react";
+import { ReactComponent as OwlIcon } from "./assets/robot.svg";
+import "./App.css";
 
 interface Props {
   // rootElement: HTMLElement;
@@ -48,7 +50,6 @@ function App() {
   const text = selection.textContent;
 
   useEffect(() => {
-    console.log("inside effect", selection.textContent);
     if (selection.clientRect) {
       const virtualEl = {
         getBoundingClientRect() {
@@ -63,9 +64,9 @@ function App() {
   return (
     <>
       <input value={"hello world"} />
-      {/* <blockquote contentEditable="true">
+      <blockquote contentEditable="true">
         <p>Edit this content to add your own quote</p>
-      </blockquote> */}
+      </blockquote>
       <ul style={{ border: "1px solid white" }}>
         <p>Mantine Selection: {text}</p>
         <p>
@@ -91,17 +92,23 @@ function App() {
       </div> */}
 
       <div
+        id="wonder-highlighter"
         ref={floating}
         style={{
           position: strategy,
           left: x ?? 0,
           top: y ?? 0,
-          background: "black",
+          // background: "black",
+          transition: "0.2s",
           color: "white",
-          padding: open ? 5 : 0,
+          // padding: open ? 5 : 0,
         }}
       >
-        {open && "Tooltip"}
+        {open && (
+          <div className="wonder">
+            <OwlIcon style={{ height: 18, width: 18 }} />
+          </div>
+        )}
       </div>
     </>
   );
