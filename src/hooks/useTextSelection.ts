@@ -75,8 +75,6 @@ export function useTextSelection(target?: HTMLElement) {
     const selection = window.getSelection();
     let newState: TextSelectionState = {};
 
-    console.log("Handler", selection, selection?.toString());
-
     if (selection == null || !selection.rangeCount) {
       setState(newState);
       return;
@@ -111,8 +109,6 @@ export function useTextSelection(target?: HTMLElement) {
     }
 
     const rects = range.getClientRects();
-
-    console.log("range", { range, contents, rects });
 
     if (rects.length === 0 && range.commonAncestorContainer != null) {
       const el = range.commonAncestorContainer as HTMLElement;
