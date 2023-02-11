@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useTextSelection } from "../hooks/useTextSelection";
 import { flip, offset, shift, useFloating } from "@floating-ui/react";
 import { ReactComponent as OwlIcon } from "../assets/overkill.svg";
-import { ShadowDom } from "./ShadowDOM";
+import { ShadowDom } from "./ShadowDom";
 import styles from "./App.module.css";
 export const Launcher: React.FC = () => {
   const selection = useTextSelection();
@@ -42,7 +42,7 @@ export const Launcher: React.FC = () => {
         position: strategy,
         left: x ?? 0,
         top: y ?? 0,
-        transition: "0.2s",
+        zIndex: "2147483647",
         color: "white",
       }}
     >

@@ -13,4 +13,5 @@
     rgba(85, 72, 244, 1) 100%
   );
   border: 1px solid #d9d9d9;
+  cursor: pointer;
 }
