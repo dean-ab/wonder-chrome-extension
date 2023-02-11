@@ -4,6 +4,7 @@ import { flip, offset, shift, useFloating } from "@floating-ui/react";
 import { ReactComponent as OwlIcon } from "../assets/overkill.svg";
 import { ShadowDom } from "./ShadowDom";
 import styles from "./App.module.css";
+import { ThemeProvider } from "./ThemeProvider";
 
 export const Launcher: React.FC = () => {
   const selection = useTextSelection();
@@ -48,11 +49,13 @@ export const Launcher: React.FC = () => {
       }}
     >
       <ShadowDom>
-        {open && (
-          <div className={styles.wonder}>
-            <OwlIcon style={{ height: 18, width: 18 }} />
-          </div>
-        )}
+        <ThemeProvider>
+          {open && (
+            <div className={styles.wonder}>
+              <OwlIcon style={{ height: 18, width: 18 }} />
+            </div>
+          )}
+        </ThemeProvider>
       </ShadowDom>
     </div>
   );
