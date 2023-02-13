@@ -17,7 +17,19 @@ export const ThemeProvider: React.FC<IProps> = ({ children }) => {
     []
   );
   return (
-    <MantineProvider emotionCache={cache} withNormalizeCSS>
+    <MantineProvider
+      emotionCache={cache}
+      withNormalizeCSS
+      theme={{
+        components: {
+          Affix: {
+            defaultProps: {
+              target: shadowRoot,
+            },
+          },
+        },
+      }}
+    >
       {children}
     </MantineProvider>
   );

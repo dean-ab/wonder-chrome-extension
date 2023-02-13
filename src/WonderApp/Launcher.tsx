@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useTextSelection } from "../hooks/useTextSelection";
 import { flip, offset, shift, useFloating } from "@floating-ui/react";
-import { ReactComponent as OwlIcon } from "../assets/overkill.svg";
 import { ShadowDom } from "./ShadowDom";
-import styles from "./App.module.css";
 import { ThemeProvider } from "./ThemeProvider";
+import { AppShell } from "./AppShell/AppShell";
 
 export const Launcher: React.FC = () => {
   const selection = useTextSelection();
@@ -40,6 +39,9 @@ export const Launcher: React.FC = () => {
     <div
       id="wonder-highlighter"
       ref={floating}
+      onClick={(e) => e.preventDefault()}
+      onMouseDown={(e) => e.preventDefault()}
+      onMouseUp={(e) => e.preventDefault()}
       style={{
         position: strategy,
         left: x ?? 0,
@@ -51,9 +53,9 @@ export const Launcher: React.FC = () => {
       <ShadowDom>
         <ThemeProvider>
           {open && (
-            <div className={styles.wonder}>
-              <OwlIcon style={{ height: 18, width: 18 }} />
-            </div>
+            <>
+              <AppShell isOpen={open} setIsOpen={setOpen} />
+            </>
           )}
         </ThemeProvider>
       </ShadowDom>
