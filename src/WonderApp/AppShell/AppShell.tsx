@@ -1,6 +1,7 @@
-import { Button, Text, Popover } from "@mantine/core";
-import React, { useState } from "react";
-import { AppIcon } from "./AppIcon";
+import React, { useState } from 'react';
+import { Popover } from '@mantine/core';
+import { Menu } from '../../WonderMenu';
+import { AppIcon } from './AppIcon';
 
 interface IProps {
   isOpen: boolean;
@@ -9,7 +10,8 @@ interface IProps {
 }
 
 export const AppShell = ({ isOpen, setIsOpen }: IProps) => {
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState<boolean>(false);
+
   return (
     <Popover
       opened={open}
@@ -17,15 +19,17 @@ export const AppShell = ({ isOpen, setIsOpen }: IProps) => {
       position="bottom-end"
       shadow="md"
       middlewares={{ flip: true, shift: true, inline: true }}
+      styles={() => ({
+        dropdown: {
+          padding: 0,
+        },
+      })}
     >
       <Popover.Target>
         <AppIcon onClick={() => setOpen(true)} />
       </Popover.Target>
       <Popover.Dropdown>
-        <Text size="sm" color={"black"}>
-          This is uncontrolled popover, it is opened when button is clicked
-          <Button onClick={() => setOpen(false)}>Close</Button>
-        </Text>
+        <Menu />
       </Popover.Dropdown>
     </Popover>
   );
