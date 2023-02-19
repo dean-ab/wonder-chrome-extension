@@ -34,8 +34,6 @@ export const ActionWrapper: React.FC<IProps> = ({
   ]);
   const [paramsToSend, setParamsToSend] = React.useState<RequestParam>({});
 
-  console.log('FLAG __ ActionWrapper[37]', paramsToSend);
-
   const handleParamSelect = (param: string) => {
     setViewedParams([...viewedParams, param]);
   };

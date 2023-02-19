@@ -1,9 +1,9 @@
-import ReactDOM from "react-dom/client";
-import { Launcher } from "./Launcher";
+import ReactDOM from 'react-dom/client';
+import { Launcher } from './Launcher';
 
 export function bootstrap() {
-  const hostElement = document.createElement("div");
-  hostElement.setAttribute("id", "wonder-app");
+  const hostElement = document.createElement('div');
+  hostElement.setAttribute('id', 'wonder-app');
 
   document.body.appendChild(hostElement);
 

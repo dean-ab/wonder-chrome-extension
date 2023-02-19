@@ -1,11 +1,11 @@
-import React, { useState } from "react";
-import { Accordion, Tabs, Text } from "@mantine/core";
-import { ActionWrapper } from "./shared/ActionWrapper";
+import React, { useState } from 'react';
+import { Accordion, Tabs, Text } from '@mantine/core';
+import { ActionWrapper } from './shared/ActionWrapper';
 import {
   IconAdjustmentsHorizontal,
   IconTextSpellcheck,
   IconWriting,
-} from "@tabler/icons-react";
+} from '@tabler/icons-react';
 
 export const EditTab = () => {
   return (
@@ -15,9 +15,9 @@ export const EditTab = () => {
         mx="auto"
         styles={{
           control: {
-            "&[data-active]": {
-              ":hover": {
-                backgroundColor: "transparent",
+            '&[data-active]': {
+              ':hover': {
+                backgroundColor: 'transparent',
               },
             },
           },
@@ -28,9 +28,9 @@ export const EditTab = () => {
           label="Rewrite"
           description="Make significant adjustments to make it clearer or more concise."
           parametersMap={{
-            "Tone of voice": ["Casual", "Formal"],
-            Length: ["short", "medium", "long"],
-            Format: ["Paragraph", "Bullet points", "Numbered list"],
+            'Tone of voice': ['Casual', 'Formal'],
+            Length: ['short', 'medium', 'long'],
+            Format: ['Paragraph', 'Bullet points', 'Numbered list'],
           }}
           initialParam="Tone of voice"
           icon={<IconWriting stroke={1} size={22} color="#553AF6" />}

@@ -14,5 +14,5 @@ export const AppIcon: React.FC<IProps> = forwardRef(
         <AppIconSvg style={{ height: 18, width: 18 }} />
       </div>
     );
-  }
+  },
 );
