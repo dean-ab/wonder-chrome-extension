@@ -1,4 +1,4 @@
-import { useCallback, useLayoutEffect, useState } from "react";
+import { useCallback, useLayoutEffect, useState } from 'react';
 
 /**
  * @param {*} ctx The context
@@ -20,7 +20,7 @@ export const debounce = (func: any, delay: number) => {
   };
 };
 
-type ClientRect = Record<keyof Omit<DOMRect, "toJSON">, number>;
+type ClientRect = Record<keyof Omit<DOMRect, 'toJSON'>, number>;
 
 function roundValues(_rect: ClientRect) {
   const rect = {
@@ -113,6 +113,12 @@ export function useTextSelection(target?: HTMLElement) {
     if (rects.length === 0 && range.commonAncestorContainer != null) {
       const el = range.commonAncestorContainer as HTMLElement;
 
+      const appElement = document.getElementById('wonder-highlighter');
+
+      const isSelectionInApp = appElement?.contains(el);
+      if (isSelectionInApp) {
+        return;
+      }
       newRect = roundValues(el.getBoundingClientRect().toJSON());
     } else {
       if (rects.length < 1) return;
@@ -128,16 +134,16 @@ export function useTextSelection(target?: HTMLElement) {
 
   useLayoutEffect(() => {
     const debouncedHandler = debounce(handler, 200);
-    document.addEventListener("selectionchange", debouncedHandler);
-    document.addEventListener("keydown", handler);
-    document.addEventListener("keyup", handler);
-    window.addEventListener("resize", handler);
+    document.addEventListener('selectionchange', debouncedHandler);
+    document.addEventListener('keydown', handler);
+    document.addEventListener('keyup', handler);
+    window.addEventListener('resize', handler);
 
     return () => {
-      document.removeEventListener("selectionchange", debouncedHandler);
-      document.removeEventListener("keydown", handler);
-      document.removeEventListener("keyup", handler);
-      window.removeEventListener("resize", handler);
+      document.removeEventListener('selectionchange', debouncedHandler);
+      document.removeEventListener('keydown', handler);
+      document.removeEventListener('keyup', handler);
+      window.removeEventListener('resize', handler);
     };
   }, [target]);
 
