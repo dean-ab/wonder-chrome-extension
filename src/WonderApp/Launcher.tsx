@@ -4,6 +4,7 @@ import { flip, offset, shift, useFloating } from '@floating-ui/react';
 import { ShadowDom } from './ShadowDom';
 import { ThemeProvider } from './ThemeProvider';
 import { AppShell } from './AppShell/AppShell';
+import { Button } from '@mantine/core';
 
 export const Launcher: React.FC = () => {
   const selection = useTextSelection();
@@ -52,7 +53,20 @@ export const Launcher: React.FC = () => {
     >
       <ShadowDom>
         <ThemeProvider>
-          {open && <AppShell isOpen={open} setIsOpen={setOpen} />}
+          {open && (
+            <>
+              <AppShell isOpen={open} setIsOpen={setOpen} />
+              <Button
+                onClick={() => {
+                  selection.replaceSelection(
+                    'This is replaced text bitch!!!!!!',
+                  );
+                }}
+              >
+                Replace Text
+              </Button>
+            </>
+          )}
         </ThemeProvider>
       </ShadowDom>
     </div>

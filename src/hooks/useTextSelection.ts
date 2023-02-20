@@ -46,11 +46,52 @@ function shallowDiff(prev: any, next: any) {
   return false;
 }
 
+function getContentEditableElementFromNode(
+  node: Node | null,
+): HTMLElement | null {
+  if (!node) {
+    return null;
+  }
+
+  if (!(node instanceof HTMLElement)) {
+    return getContentEditableElementFromNode(node.parentElement);
+  }
+
+  if (node.isContentEditable) {
+    return node;
+  }
+
+  switch (node.contentEditable) {
+    case 'true':
+      return node;
+    case 'false':
+      return null;
+    case 'inherit':
+    default:
+      return getContentEditableElementFromNode(node.parentElement);
+  }
+}
+
+function replaceSelectionFactory(
+  selection: Selection,
+  contentEditable: HTMLElement | null,
+) {
+  if (!contentEditable) return () => {};
+
+  return (text: string) => {
+    const range = selection.getRangeAt(0);
+    range.deleteContents();
+    range.insertNode(document.createTextNode(text));
+  };
+}
+
 type TextSelectionState = {
   clientRect?: ClientRect;
   isCollapsed?: boolean;
   textContent?: string;
   selection?: Selection;
+  isContentEditable?: boolean;
+  replaceSelection?: (text: string) => void;
 };
 
 const defaultState: TextSelectionState = {};
@@ -63,8 +104,16 @@ const defaultState: TextSelectionState = {};
  *
  */
 export function useTextSelection(target?: HTMLElement) {
-  const [{ clientRect, isCollapsed, textContent, selection }, setState] =
-    useState<TextSelectionState>(defaultState);
+  const [
+    {
+      clientRect,
+      isCollapsed,
+      textContent,
+      selection,
+      replaceSelection = () => {},
+    },
+    setState,
+  ] = useState<TextSelectionState>(defaultState);
 
   const reset = useCallback(() => {
     setState(defaultState);
@@ -95,11 +144,8 @@ export function useTextSelection(target?: HTMLElement) {
     }
 
     const contents = range.cloneContents();
-    const selectionString = selection.toString();
 
-    // if (contents.textContent != null || selectionString != null) {
     if (contents.textContent != null) {
-      // const textContent = contents.textContent || selectionString;
       const textContent = contents.textContent;
       const trimmedText = textContent.trim();
 
@@ -114,21 +160,29 @@ export function useTextSelection(target?: HTMLElement) {
       const el = range.commonAncestorContainer as HTMLElement;
 
       const appElement = document.getElementById('wonder-highlighter');
-
       const isSelectionInApp = appElement?.contains(el);
+
       if (isSelectionInApp) {
         return;
       }
+
       newRect = roundValues(el.getBoundingClientRect().toJSON());
     } else {
-      if (rects.length < 1) return;
       newRect = roundValues(rects[rects.length - 1].toJSON());
     }
     if (shallowDiff(clientRect, newRect)) {
       newState.clientRect = newRect;
     }
-    newState.isCollapsed = range.collapsed;
 
+    newState.isCollapsed = range.collapsed;
+    const contentEditableElement = getContentEditableElementFromNode(
+      range.commonAncestorContainer,
+    );
+    newState.isContentEditable = !!contentEditableElement;
+    newState.replaceSelection = replaceSelectionFactory(
+      selection,
+      contentEditableElement,
+    );
     setState(newState);
   }, [target]);
 
@@ -152,5 +206,6 @@ export function useTextSelection(target?: HTMLElement) {
     isCollapsed,
     textContent,
     selection,
+    replaceSelection,
   };
 }
