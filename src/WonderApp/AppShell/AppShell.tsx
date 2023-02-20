@@ -4,12 +4,10 @@ import { Menu } from '../../WonderMenu';
 import { AppIcon } from './AppIcon';
 
 interface IProps {
-  isOpen: boolean;
-  setIsOpen: (isOpen: boolean) => void;
   children: React.ReactNode;
 }
 
-export const AppShell = ({ isOpen, setIsOpen }: IProps) => {
+export const AppShell = ({ children }: IProps) => {
   const [open, setOpen] = useState<boolean>(false);
 
   return (
@@ -28,9 +26,7 @@ export const AppShell = ({ isOpen, setIsOpen }: IProps) => {
       <Popover.Target>
         <AppIcon onClick={() => setOpen(true)} />
       </Popover.Target>
-      <Popover.Dropdown>
-        <Menu />
-      </Popover.Dropdown>
+      <Popover.Dropdown>{children}</Popover.Dropdown>
     </Popover>
   );
 };

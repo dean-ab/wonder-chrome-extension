@@ -5,6 +5,7 @@ import { ShadowDom } from './ShadowDom';
 import { ThemeProvider } from './ThemeProvider';
 import { AppShell } from './AppShell/AppShell';
 import { Button } from '@mantine/core';
+import { Menu } from '../WonderMenu';
 
 export const Launcher: React.FC = () => {
   const selection = useTextSelection();
@@ -55,7 +56,9 @@ export const Launcher: React.FC = () => {
         <ThemeProvider>
           {open && (
             <>
-              <AppShell isOpen={open} setIsOpen={setOpen} />
+              <AppShell>
+                <Menu />
+              </AppShell>
               <Button
                 onClick={() => {
                   selection.replaceSelection(
