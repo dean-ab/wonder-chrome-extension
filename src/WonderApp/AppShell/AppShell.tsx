@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Popover } from '@mantine/core';
+import { Popover, Transition } from '@mantine/core';
 import { Menu } from '../../WonderMenu';
 import { AppIcon } from './AppIcon';
 
@@ -8,12 +8,8 @@ interface IProps {
 }
 
 export const AppShell = ({ children }: IProps) => {
-  const [open, setOpen] = useState<boolean>(false);
-
   return (
     <Popover
-      opened={open}
-      onChange={setOpen}
       position="bottom-end"
       shadow="md"
       middlewares={{ flip: true, shift: true, inline: true }}
@@ -24,7 +20,7 @@ export const AppShell = ({ children }: IProps) => {
       })}
     >
       <Popover.Target>
-        <AppIcon onClick={() => setOpen(true)} />
+        <AppIcon />
       </Popover.Target>
       <Popover.Dropdown>{children}</Popover.Dropdown>
     </Popover>

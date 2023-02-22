@@ -4,7 +4,6 @@ import { flip, offset, shift, useFloating } from '@floating-ui/react';
 import { ShadowDom } from './ShadowDom';
 import { ThemeProvider } from './ThemeProvider';
 import { AppShell } from './AppShell/AppShell';
-import { Button } from '@mantine/core';
 import { Menu } from '../WonderMenu';
 
 export const Launcher: React.FC = () => {
@@ -60,15 +59,6 @@ export const Launcher: React.FC = () => {
               <AppShell>
                 <Menu />
               </AppShell>
-              <Button
-                onClick={() => {
-                  selection.replaceSelection(
-                    'This is replaced text bitch!!!!!!',
-                  );
-                }}
-              >
-                Replace Text
-              </Button>
             </>
           )}
         </ThemeProvider>

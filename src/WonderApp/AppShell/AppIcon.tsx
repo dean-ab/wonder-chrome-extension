@@ -4,7 +4,7 @@ import styles from './AppIcon.module.css';
 import { ReactComponent as AppIconSvg } from '../../assets/wondericon.svg';
 
 interface IProps {
-  onClick: () => void;
+  onClick?: () => void;
 }
 
 export const AppIcon: React.FC<IProps> = forwardRef(
