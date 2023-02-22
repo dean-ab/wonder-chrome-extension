@@ -48,6 +48,7 @@ export const Launcher: React.FC = () => {
         top: y ?? 0,
         zIndex: '2147483647',
         color: 'white',
+        transition: 'all 0.2s ease-in-out',
       }}
     >
       <ShadowDom>
