@@ -8,7 +8,11 @@ import {
 } from '@mantine/core';
 import { ReactComponent as SubmitIcon } from '../../assets/submit.svg';
 
-export const AccordionControl: React.FC<AccordionControlProps> = (props) => {
+interface IProps extends AccordionControlProps {
+  onSubmit: any;
+}
+
+export const AccordionControl: React.FC<IProps> = (props) => {
   return (
     <Box sx={{ display: 'flex', alignItems: 'center' }}>
       <Accordion.Control
@@ -19,9 +23,7 @@ export const AccordionControl: React.FC<AccordionControlProps> = (props) => {
       <ActionIcon size="lg">
         <SubmitIcon
           style={{ height: 15, width: 15 }}
-          onClick={() => {
-            console.log('here');
-          }}
+          onClick={props.onSubmit}
         />
       </ActionIcon>
     </Box>

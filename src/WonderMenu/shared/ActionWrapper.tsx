@@ -20,6 +20,7 @@ interface IProps {
   icon: React.ReactNode;
   parametersMap: RequestParam;
   updateHover: (name: string | null) => void;
+  onSubmit: any;
 }
 
 export const ActionWrapper: React.FC<IProps> = ({
@@ -29,6 +30,7 @@ export const ActionWrapper: React.FC<IProps> = ({
   icon,
   parametersMap,
   updateHover,
+  onSubmit,
 }) => {
   const [viewedParams, setViewedParams] = React.useState<string[]>([
     Object.keys(parametersMap)?.[0],
@@ -52,12 +54,8 @@ export const ActionWrapper: React.FC<IProps> = ({
   };
 
   return (
-    <Accordion.Item
-      value={name}
-      // onMouseEnter={onMouseEnter}
-      // onMouseLeave={onMouseLeave}
-    >
-      <AccordionControl icon={icon}>
+    <Accordion.Item value={name}>
+      <AccordionControl icon={icon} onSubmit={onSubmit}>
         <AccordionLabel label={label} description={description} />
       </AccordionControl>
       <Accordion.Panel>

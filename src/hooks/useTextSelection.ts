@@ -81,7 +81,9 @@ function replaceSelectionFactory(
   return (text: string) => {
     const range = selection.getRangeAt(0);
     range.deleteContents();
-    range.insertNode(document.createTextNode(text));
+    const newTextNode = document.createTextNode(text);
+    range.insertNode(newTextNode);
+    selection.collapseToEnd();
   };
 }
 
@@ -110,6 +112,7 @@ export function useTextSelection(target?: HTMLElement) {
       isCollapsed,
       textContent,
       selection,
+      isContentEditable = false,
       replaceSelection = () => {},
     },
     setState,
@@ -207,5 +210,6 @@ export function useTextSelection(target?: HTMLElement) {
     textContent,
     selection,
     replaceSelection,
+    isContentEditable,
   };
 }

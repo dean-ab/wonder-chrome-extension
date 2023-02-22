@@ -57,7 +57,11 @@ export const Launcher: React.FC = () => {
           {open && (
             <>
               <AppShell>
-                <Menu />
+                <Menu
+                  selectedText={selection.textContent}
+                  replaceSelection={selection.replaceSelection}
+                  isContentEditable={selection.isContentEditable}
+                />
               </AppShell>
             </>
           )}
