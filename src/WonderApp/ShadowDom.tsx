@@ -4,8 +4,8 @@ import React, {
   useCallback,
   useContext,
   useState,
-} from "react";
-import { createPortal } from "react-dom";
+} from 'react';
+import { createPortal } from 'react-dom';
 
 export interface IShadowDomProps {
   bypass?: boolean;
@@ -35,11 +35,11 @@ export const ShadowDom: FC<IShadowDomProps> = ({
       let shadowRoot: ShadowRoot;
 
       if (!alreadyInShadowDom && isSupported) {
-        shadowRoot = shadowHost.attachShadow({ mode: "open" });
+        shadowRoot = shadowHost.attachShadow({ mode: 'open' });
 
         // TODO: Figure out how injecting style elements on built version.
         const styleElements = document.head.querySelectorAll<HTMLStyleElement>(
-          `style[data-vite-dev-id]`
+          `style[data-vite-dev-id]`,
         );
 
         styleElements.forEach((s) => shadowRoot.appendChild(s.cloneNode(true)));
@@ -65,7 +65,7 @@ export const ShadowDom: FC<IShadowDomProps> = ({
           <ShadowDomContext.Provider value={{ root }}>
             {children}
           </ShadowDomContext.Provider>,
-          root as any
+          root as any,
         )}
     </div>
   );

@@ -1,3 +1,4 @@
+import { Tabs } from '@mantine/core';
 import React, { useState } from 'react';
 import { Accordion, Tabs, Text } from '@mantine/core';
 import { ActionWrapper } from './shared/ActionWrapper';
