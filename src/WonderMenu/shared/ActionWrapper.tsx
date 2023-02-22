@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { Dispatch, SetStateAction, useEffect } from 'react';
 import {
   Accordion,
   Select,
@@ -11,6 +11,7 @@ import { AccordionControl } from '../shared/AccordionControl';
 import { AccordionLabel } from '../shared/AccordionLabel';
 import { IconPlus } from '@tabler/icons-react';
 import { RequestParam } from '../../types/RequestParams';
+import clsx from 'clsx';
 
 interface IProps {
   name: string;
@@ -18,7 +19,7 @@ interface IProps {
   description: string;
   icon: React.ReactNode;
   parametersMap: RequestParam;
-  initialParam: string;
+  updateHover: (name: string | null) => void;
 }
 
 export const ActionWrapper: React.FC<IProps> = ({
@@ -27,10 +28,10 @@ export const ActionWrapper: React.FC<IProps> = ({
   description,
   icon,
   parametersMap,
-  initialParam,
+  updateHover,
 }) => {
   const [viewedParams, setViewedParams] = React.useState<string[]>([
-    initialParam,
+    Object.keys(parametersMap)?.[0],
   ]);
   const [paramsToSend, setParamsToSend] = React.useState<RequestParam>({});
 
@@ -42,18 +43,45 @@ export const ActionWrapper: React.FC<IProps> = ({
     setParamsToSend({ ...paramsToSend, ...paramObj });
   };
 
+  const onMouseEnter = () => {
+    updateHover(name);
+  };
+
+  const onMouseLeave = () => {
+    updateHover(null);
+  };
+
   return (
-    <Accordion.Item value={name}>
+    <Accordion.Item
+      value={name}
+      // onMouseEnter={onMouseEnter}
+      // onMouseLeave={onMouseLeave}
+    >
       <AccordionControl icon={icon}>
         <AccordionLabel label={label} description={description} />
       </AccordionControl>
       <Accordion.Panel>
-        <Grid align="center" sx={[{ paddingLeft: 30 }]}>
+        <Grid align="center" sx={[{ paddingLeft: 37 }]}>
           {viewedParams.map((parameter) => (
-            <Grid.Col span={3}>
+            <Grid.Col span={3} sx={[{ padding: 3 }]}>
               <Select
                 styles={{
                   label: {
+                    fontSize: 11,
+                  },
+                  input: {
+                    fontSize: 11,
+                    color: '#553AF6',
+                    minHeight: 0,
+                    maxHeight: 24,
+                  },
+                  item: {
+                    '&[data-selected]': {
+                      '&, &:hover': {
+                        backgroundColor: 'transparent',
+                        color: '#553AF6',
+                      },
+                    },
                     fontSize: 11,
                   },
                 }}
@@ -70,10 +98,27 @@ export const ActionWrapper: React.FC<IProps> = ({
           <Grid.Col
             span={viewedParams.length > 1 ? viewedParams.length - 1 : 4}
           >
-            <Menu shadow="md" width={100} position="bottom-start">
+            <Menu
+              shadow="md"
+              position="bottom-start"
+              styles={{
+                label: {
+                  fontSize: 11,
+                },
+                item: {
+                  '&[data-selected]': {
+                    '&, &:hover': {
+                      backgroundColor: 'transparent',
+                      color: '#553AF6',
+                    },
+                  },
+                  fontSize: 11,
+                },
+              }}
+            >
               <Menu.Target>
-                <ActionIcon variant="outline" sx={{ marginTop: 22 }}>
-                  <IconPlus size={20} />
+                <ActionIcon variant="light" size="sm" sx={{ marginTop: 22 }}>
+                  <IconPlus size={13} color="#553AF6" />
                 </ActionIcon>
               </Menu.Target>
               <Menu.Dropdown>

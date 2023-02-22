@@ -18,7 +18,7 @@ export const AccordionControl: React.FC<AccordionControlProps> = (props) => {
       />
       <ActionIcon size="lg">
         <SubmitIcon
-          style={{ height: 13, width: 13 }}
+          style={{ height: 15, width: 15 }}
           onClick={() => {
             console.log('here');
           }}

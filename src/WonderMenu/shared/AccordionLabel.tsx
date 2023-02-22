@@ -12,10 +12,10 @@ export const AccordionLabel: React.FC<AccordionLabelProps> = ({
 }) => {
   return (
     <div>
-      <Text size={12} fw={600}>
+      <Text size={13} fw={600}>
         {label}
       </Text>
-      <Text size={10} fw={400} color="#848485">
+      <Text size={11} fw={400} color="#848485">
         {description}
       </Text>
     </div>
