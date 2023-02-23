@@ -12,6 +12,7 @@ export const AppShell = ({ children }: IProps) => {
     <Popover
       position="bottom-end"
       shadow="md"
+      width={500}
       middlewares={{ flip: true, shift: true, inline: true }}
       styles={() => ({
         dropdown: {

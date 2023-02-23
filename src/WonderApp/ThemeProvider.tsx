@@ -21,6 +21,21 @@ export const ThemeProvider: React.FC<IProps> = ({ children }) => {
       emotionCache={cache}
       withNormalizeCSS
       theme={{
+        colors: {
+          brand: [
+            '#EAE7FE',
+            '#C5BBFC',
+            '#9F8FF9',
+            '#7A64F7',
+            '#5438F5',
+            '#2F0CF3',
+            '#250AC2',
+            '#1C0792',
+            '#130561',
+            '#090231',
+          ],
+        },
+        primaryColor: 'brand',
         components: {
           Affix: {
             defaultProps: {

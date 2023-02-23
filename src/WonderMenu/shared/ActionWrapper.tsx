@@ -20,7 +20,7 @@ interface IProps {
   icon: React.ReactNode;
   parametersMap: RequestParam;
   updateHover: (name: string | null) => void;
-  onSubmit: any;
+  onSubmit: (name: string, params: RequestParam) => void;
 }
 
 export const ActionWrapper: React.FC<IProps> = ({
@@ -55,7 +55,10 @@ export const ActionWrapper: React.FC<IProps> = ({
 
   return (
     <Accordion.Item value={name}>
-      <AccordionControl icon={icon} onSubmit={onSubmit}>
+      <AccordionControl
+        icon={icon}
+        onSubmit={() => onSubmit(name, paramsToSend)}
+      >
         <AccordionLabel label={label} description={description} />
       </AccordionControl>
       <Accordion.Panel>

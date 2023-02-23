@@ -3,8 +3,9 @@ import { Tabs } from '@mantine/core';
 import { EditTab } from './EditTab';
 import { ReadTab } from './ReadTab';
 import { WriteTab } from './WriteTab';
-import * as api from '../Api';
+import * as api from '../api/query';
 import { ResultTab } from './ResultTab';
+import { RequestParam } from '../types/RequestParams';
 
 export type ViewMode = 'prompt' | 'result';
 
@@ -22,17 +23,25 @@ export const Menu: React.FC<IProps> = ({
   const [activeTab, setActiveTab] = useState<string | null>('edit');
   const [viewMode, setViewMode] = useState<ViewMode>('prompt');
   const [result, setResult] = useState<string>('');
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  const onSubmitButtonClick = async () => {
+  const onSubmitButtonClick = async (name: string, params: RequestParam) => {
     if (!selectedText) return;
+    setViewMode('result');
+    setIsLoading(true);
 
     try {
-      const resultText = await api.generateTextFromPrompt(selectedText);
-      setViewMode('result');
+      const resultText = await api.query(
+        selectedText,
+        activeTab as string,
+        name,
+        params,
+      );
       setResult(resultText);
     } catch (error) {
       console.error(error);
     }
+    setIsLoading(false);
   };
 
   const onReplaceSelection = () => {
@@ -67,6 +76,7 @@ export const Menu: React.FC<IProps> = ({
         ) : (
           activeTab && (
             <ResultTab
+              isLoading={isLoading}
               activeTab={activeTab}
               resultText={result}
               replaceText={onReplaceSelection}

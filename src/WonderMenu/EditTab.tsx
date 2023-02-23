@@ -35,9 +35,27 @@ export const EditTab: React.FC<IProps> = ({ onSubmit }) => {
           label="Rewrite"
           description="Make significant adjustments to make it clearer or more concise."
           parametersMap={{
-            Tone: ['Casual', 'Formal'],
-            Length: ['Short', 'Medium', 'Long'],
-            Format: ['Paragraph', 'Bullet points', 'Numbered list'],
+            tone: [
+              'formal',
+              'informal',
+              'sarcastic',
+              'polite',
+              'humorous',
+              'serious',
+              'professional',
+              'friendly',
+              'presuasive',
+              'empathic',
+              'condescending',
+            ],
+            Length: ['short', 'medium', 'long', 'very_long', 'custom'],
+            Format: [
+              'article',
+              'blog_post',
+              'research_paper',
+              'speech',
+              'email',
+            ],
           }}
           icon={<IconWriting stroke={1} size={22} color="#553AF6" />}
           onSubmit={onSubmit}

@@ -20,9 +20,9 @@ export const AccordionControl: React.FC<IProps> = (props) => {
         chevron={<></>}
         {...props}
       />
-      <ActionIcon size="lg">
+      <ActionIcon size="xl">
         <SubmitIcon
-          style={{ height: 15, width: 15 }}
+          style={{ height: 18, width: 18 }}
           onClick={props.onSubmit}
         />
       </ActionIcon>
