@@ -11,7 +11,6 @@ import { AccordionControl } from '../shared/AccordionControl';
 import { AccordionLabel } from '../shared/AccordionLabel';
 import { IconPlus } from '@tabler/icons-react';
 import { RequestParam } from '../../types/RequestParams';
-import clsx from 'clsx';
 
 interface IProps {
   name: string;
@@ -66,6 +65,7 @@ export const ActionWrapper: React.FC<IProps> = ({
           {viewedParams.map((parameter) => (
             <Grid.Col span={3} sx={[{ padding: 3 }]}>
               <Select
+                selectOnBlur={false}
                 styles={{
                   label: {
                     fontSize: 11,
@@ -89,7 +89,6 @@ export const ActionWrapper: React.FC<IProps> = ({
                 transitionDuration={150}
                 transition="pop-top-left"
                 transitionTimingFunction="ease"
-                clearable
                 label={parameter}
                 data={(parametersMap[parameter] as string[] | number[]) || []}
                 onChange={(value) => handleParamsUpdate({ [parameter]: value })}

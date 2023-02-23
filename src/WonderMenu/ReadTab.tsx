@@ -7,7 +7,11 @@ import {
   IconWriting,
 } from '@tabler/icons-react';
 
-export const ReadTab: React.FC = () => {
+interface IProps {
+  onSubmit: any;
+}
+
+export const ReadTab: React.FC<IProps> = ({ onSubmit }) => {
   const [accordionValue, setAccordionValue] = useState<string | null>(null);
 
   return (
@@ -36,6 +40,7 @@ export const ReadTab: React.FC = () => {
             Format: ['Paragraph', 'Bullet points', 'Numbered list'],
           }}
           icon={<IconWriting stroke={1} size={22} color="#553AF6" />}
+          onSubmit={onSubmit}
         />
 
         <ActionWrapper
@@ -51,6 +56,7 @@ export const ReadTab: React.FC = () => {
             Length: ['Short', 'Medium', 'Long'],
             Format: ['Paragraph', 'Bullet points', 'Numbered list'],
           }}
+          onSubmit={onSubmit}
         />
 
         <ActionWrapper
@@ -64,6 +70,7 @@ export const ReadTab: React.FC = () => {
             Length: ['Short', 'Medium', 'Long'],
             Format: ['Paragraph', 'Bullet points', 'Numbered list'],
           }}
+          onSubmit={onSubmit}
         />
       </Accordion>
     </Tabs.Panel>
