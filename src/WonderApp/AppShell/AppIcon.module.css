@@ -1,17 +1,13 @@
 .wonderIcon {
   background: black;
   color: white;
-  border-radius: 50%;
+  border-radius: 6px;
   padding: 5px;
   display: flex;
   align-items: center;
   justify-content: center;
-  /* margin: 10px; */
-  background: linear-gradient(
-    90deg,
-    rgba(244, 121, 213, 1) 17%,
-    rgba(85, 72, 244, 1) 100%
-  );
-  border: 1px solid #d9d9d9;
+  background: linear-gradient(90deg, #553af6, #553af6 100%);
+  border: 1px solid linear-gradient(0deg, #e4e7ec, #e4e7ec),
+    linear-gradient(0deg, #ffffff, #ffffff);
   cursor: pointer;
 }

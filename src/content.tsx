@@ -1,3 +1,3 @@
-import { bootstrap } from "./WonderApp";
+import { bootstrap } from './WonderApp';
 
 bootstrap();

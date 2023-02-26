@@ -1,10 +1,10 @@
-import React, { forwardRef, Ref } from "react";
-import clsx from "clsx";
-import styles from "./AppIcon.module.css";
-import { ReactComponent as AppIconSvg } from "../../assets/overkill.svg";
+import React, { forwardRef, Ref } from 'react';
+import clsx from 'clsx';
+import styles from './AppIcon.module.css';
+import { ReactComponent as AppIconSvg } from '../../assets/wondericon.svg';
 
 interface IProps {
-  onClick: () => void;
+  onClick?: () => void;
 }
 
 export const AppIcon: React.FC<IProps> = forwardRef(
@@ -14,5 +14,5 @@ export const AppIcon: React.FC<IProps> = forwardRef(
         <AppIconSvg style={{ height: 18, width: 18 }} />
       </div>
     );
-  }
+  },
 );
