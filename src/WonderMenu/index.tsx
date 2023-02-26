@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Tabs } from '@mantine/core';
+import { Badge, Tabs } from '@mantine/core';
 import { EditTab } from './EditTab';
 import { ReadTab } from './ReadTab';
 import { WriteTab } from './WriteTab';
@@ -20,7 +20,9 @@ export const Menu: React.FC<IProps> = ({
   replaceSelection,
   isContentEditable,
 }) => {
-  const [activeTab, setActiveTab] = useState<string | null>('edit');
+  const [activeTab, setActiveTab] = useState<string | null>(
+    isContentEditable ? 'edit' : 'read',
+  );
   const [viewMode, setViewMode] = useState<ViewMode>('prompt');
   const [result, setResult] = useState<string>('');
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -59,19 +61,30 @@ export const Menu: React.FC<IProps> = ({
 
   return (
     <div>
-      <Tabs value={activeTab} onTabChange={onTabChange} color="indigo">
+      <Tabs
+        value={activeTab}
+        onTabChange={onTabChange}
+        color="indigo"
+        styles={{
+          tabLabel: {
+            color: '#553AF6',
+          },
+        }}
+      >
         <Tabs.List grow defaultValue="edit">
-          <Tabs.Tab value="edit">Edit</Tabs.Tab>
+          <Tabs.Tab value="edit" disabled={!isContentEditable}>
+            Edit
+          </Tabs.Tab>
           <Tabs.Tab value="read">Read</Tabs.Tab>
           <Tabs.Tab value="write" disabled>
-            Write (Coming soon)
+            Write <Badge>Coming soon</Badge>
           </Tabs.Tab>
         </Tabs.List>
         {viewMode === 'prompt' ? (
           <>
             <EditTab onSubmit={onSubmitButtonClick} />
             <ReadTab onSubmit={onSubmitButtonClick} />
-            <WriteTab onSubmit={onSubmitButtonClick} />
+            <WriteTab />
           </>
         ) : (
           activeTab && (

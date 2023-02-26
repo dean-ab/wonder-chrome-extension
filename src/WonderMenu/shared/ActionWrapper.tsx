@@ -1,12 +1,5 @@
-import React, { Dispatch, SetStateAction, useEffect } from 'react';
-import {
-  Accordion,
-  Select,
-  Grid,
-  ActionIcon,
-  Menu,
-  Button,
-} from '@mantine/core';
+import React from 'react';
+import { Accordion, Select, Grid, ActionIcon, Menu } from '@mantine/core';
 import { AccordionControl } from '../shared/AccordionControl';
 import { AccordionLabel } from '../shared/AccordionLabel';
 import { IconPlus } from '@tabler/icons-react';
@@ -65,7 +58,6 @@ export const ActionWrapper: React.FC<IProps> = ({
           {viewedParams.map((parameter) => (
             <Grid.Col span={3} sx={[{ padding: 3 }]}>
               <Select
-                selectOnBlur={false}
                 styles={{
                   label: {
                     fontSize: 11,
