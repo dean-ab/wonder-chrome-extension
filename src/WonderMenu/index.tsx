@@ -61,16 +61,7 @@ export const Menu: React.FC<IProps> = ({
 
   return (
     <div>
-      <Tabs
-        value={activeTab}
-        onTabChange={onTabChange}
-        color="indigo"
-        styles={{
-          tabLabel: {
-            color: '#553AF6',
-          },
-        }}
-      >
+      <Tabs value={activeTab} onTabChange={onTabChange} color="indigo">
         <Tabs.List grow defaultValue="edit">
           <Tabs.Tab value="edit" disabled={!isContentEditable}>
             Edit
