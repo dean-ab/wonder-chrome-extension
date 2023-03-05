@@ -13,12 +13,14 @@ interface IProps {
   selectedText?: string;
   replaceSelection: (text: string) => void;
   isContentEditable: boolean;
+  closeWidget: () => void;
 }
 
 export const Menu: React.FC<IProps> = ({
   selectedText,
   replaceSelection,
   isContentEditable,
+  closeWidget,
 }) => {
   const [activeTab, setActiveTab] = useState<string | null>(
     isContentEditable ? 'edit' : 'read',
@@ -50,6 +52,7 @@ export const Menu: React.FC<IProps> = ({
     if (!result) return;
 
     replaceSelection(result);
+    closeWidget();
   };
 
   const onTabChange = (tabValue: string | null) => {

@@ -77,9 +77,9 @@ function replaceSelectionFactory(
   contentEditable: HTMLElement | null,
 ) {
   if (!contentEditable) return () => {};
+  const range = selection.getRangeAt(0);
 
   return (text: string) => {
-    const range = selection.getRangeAt(0);
     range.deleteContents();
     const newTextNode = document.createTextNode(text);
     range.insertNode(newTextNode);
