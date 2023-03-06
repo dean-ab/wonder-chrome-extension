@@ -61,6 +61,7 @@ export const Launcher: React.FC = () => {
                   selectedText={selection.textContent}
                   replaceSelection={selection.replaceSelection}
                   isContentEditable={selection.isContentEditable}
+                  closeWidget={() => setOpen(false)}
                 />
               </AppShell>
             </>
