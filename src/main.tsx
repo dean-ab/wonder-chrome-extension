@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { ExtensionMenu } from './menu/ExtensionMenu';
 import './index.css';
-import { Launcher } from './WonderApp/Launcher';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
-    <Launcher />
+    <ExtensionMenu />
   </React.StrictMode>,
 );

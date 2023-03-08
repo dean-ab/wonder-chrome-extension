@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "dev:menu": "vite serve ./src/menu",
     "build": "tsc && vite build",
     "preview": "vite preview"
   },
