@@ -82,8 +82,12 @@ export const ActionWrapper: React.FC<IProps> = ({
                 transition="pop-top-left"
                 transitionTimingFunction="ease"
                 label={parameter}
-                data={(parametersMap[parameter] as string[] | number[]) || []}
-                onChange={(value) => handleParamsUpdate({ [parameter]: value })}
+                data={
+                  (parametersMap[parameter] as string[] | number[] | any) || []
+                }
+                onChange={(value) =>
+                  handleParamsUpdate({ [parameter]: value as any })
+                }
               />
             </Grid.Col>
           ))}

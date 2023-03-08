@@ -5,13 +5,16 @@ import { ReactComponent as AppIconSvg } from '../../../assets/wonderIcon.svg';
 
 interface IProps {
   onClick?: () => void;
+  size?: number;
 }
 
 export const AppIcon: React.FC<IProps> = forwardRef(
-  ({ onClick }: IProps, ref: Ref<HTMLDivElement>) => {
+  ({ onClick, size }: IProps, ref: Ref<HTMLDivElement>) => {
     return (
       <div ref={ref} className={styles.wonderIcon} onClick={onClick}>
-        <AppIconSvg style={{ height: 18, width: 18 }} />
+        <AppIconSvg
+          style={{ height: size ? size : 18, width: size ? size : 18 }}
+        />
       </div>
     );
   },

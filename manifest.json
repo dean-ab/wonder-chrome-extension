@@ -2,11 +2,12 @@
   "manifest_version": 3,
   "name": "WonderWord",
   "version": "1.0.0",
-  "action": { "default_popup": "src/menu/index.html" },
+  "action": { "default_popup": "index.html" },
   "content_scripts": [
     {
       "js": ["./src/content.tsx"],
       "matches": ["<all_urls>"]
     }
-  ]
+  ],
+  "permissions": ["management"]
 }
