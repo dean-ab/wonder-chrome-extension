@@ -1,7 +1,7 @@
 import React, { forwardRef, Ref } from 'react';
 import clsx from 'clsx';
 import styles from './AppIcon.module.css';
-import { ReactComponent as AppIconSvg } from '../../assets/wondericon.svg';
+import { ReactComponent as AppIconSvg } from '../../../assets/wonderIcon.svg';
 
 interface IProps {
   onClick?: () => void;

@@ -6,7 +6,7 @@ import {
   Box,
   ThemeIcon,
 } from '@mantine/core';
-import { ReactComponent as SubmitIcon } from '../../assets/submit.svg';
+import { ReactComponent as SubmitIcon } from '../../../assets/submit.svg';
 
 interface IProps extends AccordionControlProps {
   onSubmit: any;
