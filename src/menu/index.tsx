@@ -1,9 +1,9 @@
-import React from "react";
+import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { ExtensionMenu } from "./ExtensionMenu";
+import { ExtensionMenu } from './ExtensionMenu';
 
-ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
-    <React.StrictMode>
-        <ExtensionMenu />
-    </React.StrictMode>,
+ReactDOM.createRoot(document.getElementById('menu') as HTMLElement).render(
+  <React.StrictMode>
+    <ExtensionMenu />
+  </React.StrictMode>,
 );
