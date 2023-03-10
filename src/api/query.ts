@@ -3,7 +3,8 @@ import { RequestParam } from '../types/RequestParams';
 
 const client = axios.create({
   // baseURL: 'http://localhost:3000',
-  baseURL: 'https://wonder-api.herokuapp.com',
+  // baseURL: 'https://wonder-api.herokuapp.com',
+  baseURL: 'https://wonder-api.fly.dev/',
   withCredentials: false,
   headers: {
     'Content-type': 'application/json',
