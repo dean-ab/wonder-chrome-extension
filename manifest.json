@@ -8,5 +8,9 @@
       "js": ["./src/content.tsx"],
       "matches": ["<all_urls>"]
     }
-  ]
+  ],
+  "icons": {
+    "16": "src/assets/feather.png"
+  },
+  "permissions": ["management"]
 }
