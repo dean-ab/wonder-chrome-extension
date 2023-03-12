@@ -97,6 +97,7 @@ export const Menu: React.FC<IProps> = ({
               submitAgain={onAnotherSuggestion}
               replaceText={onReplaceSelection}
               isContentEditable={isContentEditable}
+              goBack={() => setViewMode('prompt')}
             />
           )
         )}
