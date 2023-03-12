@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { Badge, Tabs } from '@mantine/core';
 import { EditTab } from './EditTab';
 import { ReadTab } from './ReadTab';
@@ -22,12 +22,19 @@ export const Menu: React.FC<IProps> = ({
   isContentEditable,
   closeWidget,
 }) => {
+  const prevParams = useRef({ name: '', params: {} });
+
   const [activeTab, setActiveTab] = useState<string | null>(
     isContentEditable ? 'edit' : 'read',
   );
   const [viewMode, setViewMode] = useState<ViewMode>('prompt');
   const [result, setResult] = useState<string>('');
   const [isLoading, setIsLoading] = useState<boolean>(false);
+
+  const onAnotherSuggestion = async () => {
+    const { name, params } = prevParams.current; // get previous params
+    await onSubmitButtonClick(name, params);
+  };
 
   const onSubmitButtonClick = async (name: string, params: RequestParam) => {
     if (!selectedText) return;
@@ -46,6 +53,7 @@ export const Menu: React.FC<IProps> = ({
       console.error(error);
     }
     setIsLoading(false);
+    prevParams.current = { name, params };
   };
 
   const onReplaceSelection = () => {
@@ -95,6 +103,7 @@ export const Menu: React.FC<IProps> = ({
               isLoading={isLoading}
               activeTab={activeTab}
               resultText={result}
+              submitAgain={onAnotherSuggestion}
               replaceText={onReplaceSelection}
               isContentEditable={isContentEditable}
             />

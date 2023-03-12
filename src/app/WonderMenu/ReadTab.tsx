@@ -31,7 +31,7 @@ export const ReadTab: React.FC<IProps> = ({ onSubmit }) => {
       >
         <ActionWrapper
           updateHover={setAccordionValue}
-          name="summarize"
+          name="summary"
           label="Summarize"
           description="Condense the main ideas and key points of your content into a brief and concise summary."
           parametersMap={{
