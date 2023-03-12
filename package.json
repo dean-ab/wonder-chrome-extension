@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "dev:app": "vite serve ./src/app",
+    "dev:app": "vite serve ./src/app --config vite.config.ts",
     "build": "tsc && vite build",
     "preview": "vite preview"
   },
