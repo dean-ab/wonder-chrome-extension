@@ -10,7 +10,7 @@ interface IProps {
   label: string;
   description: string;
   icon: React.ReactNode;
-  parametersMap: RequestParam;
+  parametersMap: Record<string, string[]>;
   updateHover: (name: string | null) => void;
   onSubmit: (name: string, params: RequestParam) => void;
 }
