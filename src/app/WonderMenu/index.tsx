@@ -3,9 +3,9 @@ import { Badge, Tabs } from '@mantine/core';
 import { EditTab } from './EditTab';
 import { ReadTab } from './ReadTab';
 import { WriteTab } from './WriteTab';
-import * as api from '../api/query';
+import * as api from '../../api/query';
 import { ResultTab } from './ResultTab';
-import { RequestParam } from '../types/RequestParams';
+import { RequestParam } from '../../types/RequestParams';
 
 export type ViewMode = 'prompt' | 'result';
 

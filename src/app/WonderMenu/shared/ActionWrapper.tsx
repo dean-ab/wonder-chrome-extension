@@ -3,7 +3,7 @@ import { Accordion, Select, Grid, ActionIcon, Menu } from '@mantine/core';
 import { AccordionControl } from '../shared/AccordionControl';
 import { AccordionLabel } from '../shared/AccordionLabel';
 import { IconPlus } from '@tabler/icons-react';
-import { RequestParam } from '../../types/RequestParams';
+import { RequestParam } from '../../../types/RequestParams';
 
 interface IProps {
   name: string;
@@ -82,8 +82,12 @@ export const ActionWrapper: React.FC<IProps> = ({
                 transition="pop-top-left"
                 transitionTimingFunction="ease"
                 label={parameter}
-                data={(parametersMap[parameter] as string[] | number[]) || []}
-                onChange={(value) => handleParamsUpdate({ [parameter]: value })}
+                data={
+                  (parametersMap[parameter] as string[] | number[] | any) || []
+                }
+                onChange={(value) =>
+                  handleParamsUpdate({ [parameter]: value as any })
+                }
               />
             </Grid.Col>
           ))}

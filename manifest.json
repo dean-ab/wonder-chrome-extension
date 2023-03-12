@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "name": "CRXJS React Vite Example",
+  "name": "WonderWord",
   "version": "1.0.0",
   "action": { "default_popup": "index.html" },
   "content_scripts": [
@@ -8,5 +8,9 @@
       "js": ["./src/content.tsx"],
       "matches": ["<all_urls>"]
     }
-  ]
+  ],
+  "icons": {
+    "16": "src/assets/feather.png"
+  },
+  "permissions": ["management"]
 }
