@@ -11,11 +11,11 @@ interface IProps {
   onSubmit: any;
 }
 
-export const ReadTab: React.FC<IProps> = ({ onSubmit }) => {
+export const EditTab: React.FC<IProps> = ({ onSubmit }) => {
   const [accordionValue, setAccordionValue] = useState<string | null>(null);
 
   return (
-    <Tabs.Panel value="read">
+    <Tabs.Panel value="edit">
       <Accordion
         mx="auto"
         styles={{
@@ -31,13 +31,53 @@ export const ReadTab: React.FC<IProps> = ({ onSubmit }) => {
       >
         <ActionWrapper
           updateHover={setAccordionValue}
-          name="summarize"
-          label="Summarize"
-          description="Condense the main ideas and key points of your content into a brief and concise summary."
+          name="rewrite"
+          label="Rewrite"
+          description="Make significant adjustments to make it clearer or more concise."
           parametersMap={{
-            Tone: ['Casual', 'Formal'],
-            Length: ['Short', 'Medium', 'Long'],
-            Format: ['Paragraph', 'Bullet points', 'Numbered list'],
+            Tone: [
+              'Formal',
+              'Informal',
+              'Sarcastic',
+              'Polite',
+              'Humorous',
+              'Serious',
+              'Professional',
+              'Friendly',
+              'Presuasive',
+              'Empathic',
+              'Condescending',
+            ],
+            Style: [
+              'Academic',
+              'Technical',
+              'Creative',
+              'Descriptive',
+              'Persuasive',
+            ],
+            'Target audience': [
+              'Children',
+              'Teenagers',
+              'Adults',
+              'Seniors',
+              'Professinals',
+              'Experts',
+            ],
+            Length: ['Short', 'Medium', 'Long', 'Very long'],
+            Format: [
+              'Article',
+              'Blog post',
+              'Research paper',
+              'Speech',
+              'Email',
+            ],
+            'Grammer and punctuation': [
+              'American Eng',
+              'British Eng',
+              'Australian Eng',
+              'Indian Eng',
+              'Chinese Eng',
+            ],
           }}
           icon={<IconWriting stroke={1} size={22} color="#553AF6" />}
           onSubmit={onSubmit}
@@ -45,9 +85,9 @@ export const ReadTab: React.FC<IProps> = ({ onSubmit }) => {
 
         <ActionWrapper
           updateHover={setAccordionValue}
-          name="explain"
-          label="Explain"
-          description="Get clear and detailed understanding of your content."
+          name="tune"
+          label="Tune"
+          description="Make slight adjustments without changing the overall meaning."
           icon={
             <IconAdjustmentsHorizontal stroke={1} size={22} color="#553AF6" />
           }
@@ -61,9 +101,9 @@ export const ReadTab: React.FC<IProps> = ({ onSubmit }) => {
 
         <ActionWrapper
           updateHover={setAccordionValue}
-          name="translate"
-          label="Translate"
-          description="Convert your text from one language to another."
+          name="spell_check"
+          label="Spell check"
+          description="Correct any grammatical & spelling errors or issues in your text."
           icon={<IconTextSpellcheck stroke={1} size={22} color="#553AF6" />}
           parametersMap={{
             Tone: ['Casual', 'Formal'],

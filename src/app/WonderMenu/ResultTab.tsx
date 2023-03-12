@@ -17,6 +17,7 @@ interface IProps {
   replaceText: () => void;
   isContentEditable: boolean;
   isLoading: boolean;
+  submitAgain: any;
 }
 
 export const ResultTab: React.FC<IProps> = ({
@@ -25,6 +26,7 @@ export const ResultTab: React.FC<IProps> = ({
   replaceText,
   isContentEditable,
   isLoading,
+  submitAgain,
 }) => {
   return (
     <Tabs.Panel value={activeTab}>
@@ -36,14 +38,14 @@ export const ResultTab: React.FC<IProps> = ({
         ) : (
           <>
             <Flex px="xs" justify={'flex-end'}>
-              <Button
+              {/* <Button
                 compact
                 leftIcon={<IconBookmark color="grey" />}
                 variant="subtle"
                 color="white"
               >
                 <Text color="grey">Add to shotcuts</Text>
-              </Button>
+              </Button> */}
               <CopyButton value={resultText} timeout={2000}>
                 {({ copied, copy }) => (
                   <Button
@@ -63,14 +65,6 @@ export const ResultTab: React.FC<IProps> = ({
                   </Button>
                 )}
               </CopyButton>
-              {/* <Button
-                compact
-                leftIcon={<IconCopy color="grey" />}
-                variant="subtle"
-                color="white"
-              >
-                <Text color="grey">Copy</Text>
-              </Button> */}
             </Flex>
             <Text p="sm" color="#101828" bg="#f3f1ff" size={14} fw={400}>
               {resultText}
@@ -78,7 +72,7 @@ export const ResultTab: React.FC<IProps> = ({
             <Flex px="xs" justify={'flex-end'} gap={8}>
               <Button
                 size="xs"
-                onClick={replaceText}
+                onClick={submitAgain}
                 color={'white'}
                 variant="outline"
               >

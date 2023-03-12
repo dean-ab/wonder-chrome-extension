@@ -1,1 +1,1 @@
-export type RequestParam = Record<string, string[] | number[]>;
+export type RequestParam = Record<string, string | number>;

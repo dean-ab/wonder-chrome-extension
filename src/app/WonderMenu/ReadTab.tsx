@@ -11,11 +11,11 @@ interface IProps {
   onSubmit: any;
 }
 
-export const EditTab: React.FC<IProps> = ({ onSubmit }) => {
+export const ReadTab: React.FC<IProps> = ({ onSubmit }) => {
   const [accordionValue, setAccordionValue] = useState<string | null>(null);
 
   return (
-    <Tabs.Panel value="edit">
+    <Tabs.Panel value="read">
       <Accordion
         mx="auto"
         styles={{
@@ -31,31 +31,13 @@ export const EditTab: React.FC<IProps> = ({ onSubmit }) => {
       >
         <ActionWrapper
           updateHover={setAccordionValue}
-          name="rewrite"
-          label="Rewrite"
-          description="Make significant adjustments to make it clearer or more concise."
+          name="summary"
+          label="Summarize"
+          description="Condense the main ideas and key points of your content into a brief and concise summary."
           parametersMap={{
-            tone: [
-              'formal',
-              'informal',
-              'sarcastic',
-              'polite',
-              'humorous',
-              'serious',
-              'professional',
-              'friendly',
-              'presuasive',
-              'empathic',
-              'condescending',
-            ],
-            Length: ['short', 'medium', 'long', 'very_long', 'custom'],
-            Format: [
-              'article',
-              'blog_post',
-              'research_paper',
-              'speech',
-              'email',
-            ],
+            Tone: ['Casual', 'Formal'],
+            Length: ['Short', 'Medium', 'Long'],
+            Format: ['Paragraph', 'Bullet points', 'Numbered list'],
           }}
           icon={<IconWriting stroke={1} size={22} color="#553AF6" />}
           onSubmit={onSubmit}
@@ -63,9 +45,9 @@ export const EditTab: React.FC<IProps> = ({ onSubmit }) => {
 
         <ActionWrapper
           updateHover={setAccordionValue}
-          name="tune"
-          label="Tune"
-          description="Make slight adjustments without changing the overall meaning."
+          name="explain"
+          label="Explain"
+          description="Get clear and detailed understanding of your content."
           icon={
             <IconAdjustmentsHorizontal stroke={1} size={22} color="#553AF6" />
           }
@@ -79,9 +61,9 @@ export const EditTab: React.FC<IProps> = ({ onSubmit }) => {
 
         <ActionWrapper
           updateHover={setAccordionValue}
-          name="spell_check"
-          label="Spell check"
-          description="Correct any grammatical & spelling errors or issues in your text."
+          name="translate"
+          label="Translate"
+          description="Convert your text from one language to another."
           icon={<IconTextSpellcheck stroke={1} size={22} color="#553AF6" />}
           parametersMap={{
             Tone: ['Casual', 'Formal'],

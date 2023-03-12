@@ -1,12 +1,16 @@
 {
   "manifest_version": 3,
-  "name": "CRXJS React Vite Example",
-  "version": "1.0.0",
+  "name": "Wonder",
+  "version": "1.0.1",
   "action": { "default_popup": "index.html" },
   "content_scripts": [
     {
       "js": ["./src/content.tsx"],
       "matches": ["<all_urls>"]
     }
-  ]
+  ],
+  "icons": {
+    "16": "src/assets/feather.png"
+  },
+  "permissions": ["management"]
 }
