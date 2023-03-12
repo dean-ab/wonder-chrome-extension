@@ -9,7 +9,7 @@ import {
   ActionIcon,
   CopyButton,
 } from '@mantine/core';
-import { IconCopy, IconBookmark, IconCheck } from '@tabler/icons-react';
+import { IconCopy, IconCheck, IconArrowLeft } from '@tabler/icons-react';
 
 interface IProps {
   activeTab: string;
@@ -17,7 +17,8 @@ interface IProps {
   replaceText: () => void;
   isContentEditable: boolean;
   isLoading: boolean;
-  submitAgain: any;
+  submitAgain: () => void;
+  goBack: () => void;
 }
 
 export const ResultTab: React.FC<IProps> = ({
@@ -27,7 +28,12 @@ export const ResultTab: React.FC<IProps> = ({
   isContentEditable,
   isLoading,
   submitAgain,
+  goBack,
 }) => {
+  const handleClickBack = () => {
+    goBack();
+  };
+
   return (
     <Tabs.Panel value={activeTab}>
       <Flex py="xs" direction={'column'} gap={12} maw={650}>
@@ -37,7 +43,16 @@ export const ResultTab: React.FC<IProps> = ({
           </Flex>
         ) : (
           <>
-            <Flex px="xs" justify={'flex-end'}>
+            <Flex px="xs" justify={'space-between'}>
+              <Button
+                onClick={handleClickBack}
+                leftIcon={<IconArrowLeft color="grey" />}
+                variant="subtle"
+                // color="gray"
+                compact
+              >
+                <Text color="grey">Back</Text>
+              </Button>
               {/* <Button
                 compact
                 leftIcon={<IconBookmark color="grey" />}
@@ -59,7 +74,7 @@ export const ResultTab: React.FC<IProps> = ({
                       )
                     }
                     variant="subtle"
-                    color="white"
+                    color="grey"
                   >
                     <Text color="grey">Copy</Text>
                   </Button>
