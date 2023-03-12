@@ -10,7 +10,7 @@
     }
   ],
   "icons": {
-    "16": "./src/assets/feather.png"
+    "16": "src/assets/feather.png"
   },
   "permissions": ["management"]
 }
