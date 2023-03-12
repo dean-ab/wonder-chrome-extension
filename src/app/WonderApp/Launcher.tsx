@@ -5,6 +5,7 @@ import { ShadowDom } from './ShadowDom';
 import { ThemeProvider } from './ThemeProvider';
 import { AppShell } from './AppShell/AppShell';
 import { Menu } from '../WonderMenu';
+import { AnalyticsProvider } from '../../analytics';
 
 export const Launcher: React.FC = () => {
   const selection = useTextSelection();
@@ -54,8 +55,8 @@ export const Launcher: React.FC = () => {
     >
       <ShadowDom>
         <ThemeProvider>
-          {open && (
-            <>
+          <AnalyticsProvider>
+            {open && (
               <AppShell>
                 <Menu
                   selectedText={selection.textContent}
@@ -64,8 +65,8 @@ export const Launcher: React.FC = () => {
                   closeWidget={() => setOpen(false)}
                 />
               </AppShell>
-            </>
-          )}
+            )}
+          </AnalyticsProvider>
         </ThemeProvider>
       </ShadowDom>
     </div>
