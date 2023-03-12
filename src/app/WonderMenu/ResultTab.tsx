@@ -9,7 +9,7 @@ import {
   ActionIcon,
   CopyButton,
 } from '@mantine/core';
-import { IconCopy, IconCheck, IconArrowLeft } from '@tabler/icons-react';
+import { IconCopy, IconCheck, IconChevronLeft } from '@tabler/icons-react';
 
 interface IProps {
   activeTab: string;
@@ -46,12 +46,17 @@ export const ResultTab: React.FC<IProps> = ({
             <Flex px="xs" justify={'space-between'}>
               <Button
                 onClick={handleClickBack}
-                leftIcon={<IconArrowLeft color="grey" />}
+                leftIcon={<IconChevronLeft size={22} color="grey" />}
                 variant="subtle"
-                // color="gray"
+                sx={{
+                  ':hover': { backgroundColor: 'rgb(243 244 245)' },
+                }}
                 compact
+                color="grey"
               >
-                <Text color="grey">Back</Text>
+                <Text weight={400} color="grey">
+                  Back
+                </Text>
               </Button>
               {/* <Button
                 compact
@@ -64,19 +69,24 @@ export const ResultTab: React.FC<IProps> = ({
               <CopyButton value={resultText} timeout={2000}>
                 {({ copied, copy }) => (
                   <Button
+                    sx={{
+                      ':hover': { backgroundColor: 'rgb(243 244 245)' },
+                    }}
                     onClick={copy}
                     compact
                     leftIcon={
                       copied ? (
-                        <IconCheck size={16} color="green" />
+                        <IconCheck size={22} color="green" />
                       ) : (
-                        <IconCopy color="grey" />
+                        <IconCopy size={22} color="grey" />
                       )
                     }
                     variant="subtle"
                     color="grey"
                   >
-                    <Text color="grey">Copy</Text>
+                    <Text weight={400} color="grey">
+                      Copy
+                    </Text>
                   </Button>
                 )}
               </CopyButton>

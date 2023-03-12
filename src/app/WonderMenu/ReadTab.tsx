@@ -6,6 +6,17 @@ import {
   IconTextSpellcheck,
   IconWriting,
 } from '@tabler/icons-react';
+import {
+  DetailLevelParams,
+  FocusOnParams,
+  GrammerAndPunctuationParams,
+  LengthParams,
+  OutputLanguageParams,
+  PerspectiveParams,
+  PurposeParams,
+  StyleParams,
+  ToneParams,
+} from './Parameters';
 
 interface IProps {
   onSubmit: any;
@@ -35,9 +46,11 @@ export const ReadTab: React.FC<IProps> = ({ onSubmit }) => {
           label="Summarize"
           description="Condense the main ideas and key points of your content into a brief and concise summary."
           parametersMap={{
-            Tone: ['Casual', 'Formal'],
-            Length: ['Short', 'Medium', 'Long'],
-            Format: ['Paragraph', 'Bullet points', 'Numbered list'],
+            ...FocusOnParams,
+            ...LengthParams,
+            ...PurposeParams,
+            ...PerspectiveParams,
+            ...DetailLevelParams,
           }}
           icon={<IconWriting stroke={1} size={22} color="#553AF6" />}
           onSubmit={onSubmit}
@@ -52,9 +65,12 @@ export const ReadTab: React.FC<IProps> = ({ onSubmit }) => {
             <IconAdjustmentsHorizontal stroke={1} size={22} color="#553AF6" />
           }
           parametersMap={{
-            Tone: ['Casual', 'Formal'],
-            Length: ['Short', 'Medium', 'Long'],
-            Format: ['Paragraph', 'Bullet points', 'Numbered list'],
+            ...LengthParams,
+            ...DetailLevelParams,
+            ...PurposeParams,
+            ...ToneParams,
+            ...StyleParams,
+            ...GrammerAndPunctuationParams,
           }}
           onSubmit={onSubmit}
         />
@@ -65,11 +81,7 @@ export const ReadTab: React.FC<IProps> = ({ onSubmit }) => {
           label="Translate"
           description="Convert your text from one language to another."
           icon={<IconTextSpellcheck stroke={1} size={22} color="#553AF6" />}
-          parametersMap={{
-            Tone: ['Casual', 'Formal'],
-            Length: ['Short', 'Medium', 'Long'],
-            Format: ['Paragraph', 'Bullet points', 'Numbered list'],
-          }}
+          parametersMap={{ ...OutputLanguageParams }}
           onSubmit={onSubmit}
         />
       </Accordion>
