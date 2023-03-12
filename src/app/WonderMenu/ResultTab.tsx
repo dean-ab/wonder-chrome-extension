@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   Text,
   Tabs,
@@ -10,6 +10,7 @@ import {
   CopyButton,
 } from '@mantine/core';
 import { IconCopy, IconBookmark, IconCheck } from '@tabler/icons-react';
+import { Events, useAnalytics } from '../../analytics';
 
 interface IProps {
   activeTab: string;
@@ -26,6 +27,20 @@ export const ResultTab: React.FC<IProps> = ({
   isContentEditable,
   isLoading,
 }) => {
+  const analytics = useAnalytics();
+
+
+  const onMount = () => {
+    analytics.track(Events.SuggestionScreenDisplayed, { suggested_text: resultText });
+  }
+
+  const onCopy = (copyAction: () => void) => {
+    analytics.track(Events.CopyButtonClicked);
+    copyAction();
+  }
+
+  useEffect(onMount, []);
+
   return (
     <Tabs.Panel value={activeTab}>
       <Flex py="xs" direction={'column'} gap={12} maw={650}>
@@ -47,7 +62,7 @@ export const ResultTab: React.FC<IProps> = ({
               <CopyButton value={resultText} timeout={2000}>
                 {({ copied, copy }) => (
                   <Button
-                    onClick={copy}
+                    onClick={() => onCopy(copy)}
                     compact
                     leftIcon={
                       copied ? (
@@ -63,14 +78,6 @@ export const ResultTab: React.FC<IProps> = ({
                   </Button>
                 )}
               </CopyButton>
-              {/* <Button
-                compact
-                leftIcon={<IconCopy color="grey" />}
-                variant="subtle"
-                color="white"
-              >
-                <Text color="grey">Copy</Text>
-              </Button> */}
             </Flex>
             <Text p="sm" color="#101828" bg="#f3f1ff" size={14} fw={400}>
               {resultText}

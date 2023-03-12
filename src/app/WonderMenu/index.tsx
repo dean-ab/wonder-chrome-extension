@@ -6,6 +6,7 @@ import { WriteTab } from './WriteTab';
 import * as api from '../../api/query';
 import { ResultTab } from './ResultTab';
 import { RequestParam } from '../../types/RequestParams';
+import { Events, useAnalytics } from '../../analytics';
 
 export type ViewMode = 'prompt' | 'result';
 
@@ -28,11 +29,14 @@ export const Menu: React.FC<IProps> = ({
   const [viewMode, setViewMode] = useState<ViewMode>('prompt');
   const [result, setResult] = useState<string>('');
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const analytics = useAnalytics();
 
   const onSubmitButtonClick = async (name: string, params: RequestParam) => {
     if (!selectedText) return;
     setViewMode('result');
     setIsLoading(true);
+
+    analytics.track(Events.ActionClicked, { name, params, text: selectedText, mode: activeTab });
 
     try {
       const resultText = await api.query(
@@ -51,6 +55,8 @@ export const Menu: React.FC<IProps> = ({
   const onReplaceSelection = () => {
     if (!result) return;
 
+    // TODO: Need to move all params state to this component and add this to the event here.
+    analytics.track(Events.ReplaceTextClicked, { suggestedText: result, originalText: selectedText })
     replaceSelection(result);
     closeWidget();
   };

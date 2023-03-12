@@ -24,6 +24,10 @@ export const Launcher: React.FC = () => {
     ],
   });
 
+  const onAppIconClick = () => {
+
+  }
+
   useEffect(() => {
     if (selection.clientRect) {
       const virtualEl = {
@@ -57,7 +61,7 @@ export const Launcher: React.FC = () => {
         <ThemeProvider>
           <AnalyticsProvider>
             {open && (
-              <AppShell>
+              <AppShell selection={selection}>
                 <Menu
                   selectedText={selection.textContent}
                   replaceSelection={selection.replaceSelection}

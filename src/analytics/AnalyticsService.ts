@@ -1,4 +1,5 @@
 import mixpanel, { Callback, RequestOptions } from 'mixpanel-browser';
+import { Events } from './Events';
 
 const API_KEY = '4d50fa3ebdaf39596c1105808e059777';
 
@@ -9,12 +10,12 @@ export class AnalyticsService {
     }
 
     public track(
-        eventName: string,
+        eventName: Events,
         props?: Record<string, any>,
         optionsOrCallback?: RequestOptions | Callback,
         callback?: Callback,
     ): void {
         console.log("Mixpanel", { eventName, props });
-        return mixpanel.track(eventName, props, optionsOrCallback, callback);
+        // return mixpanel.track(eventName, props, optionsOrCallback, callback);
     }
 }
