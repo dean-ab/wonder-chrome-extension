@@ -18,7 +18,7 @@ export async function query(
   action: string,
   params: RequestParam,
 ): Promise<string> {
-  return Promise.resolve('This is text returned from the server');
+  // return Promise.resolve('This is text returned from the server');
   const response = await client.post('v1/query', {
     textInput,
     operation,

@@ -5,10 +5,18 @@ import { ShadowDom } from './ShadowDom';
 import { ThemeProvider } from './ThemeProvider';
 import { AppShell } from './AppShell/AppShell';
 import { Menu } from '../WonderMenu';
+import { WONDER_ACTIVE_STORAGE_KEY } from '../../menu/ExtensionMenu';
 
 export const Launcher: React.FC = () => {
   const selection = useTextSelection();
   const [open, setOpen] = useState(false);
+  const [isAppEnabled, setIsAppEnabled] = useState(true);
+
+  useEffect(() => {
+    chrome?.storage?.local.get([WONDER_ACTIVE_STORAGE_KEY], (result) => {
+      setIsAppEnabled(!!result[WONDER_ACTIVE_STORAGE_KEY]);
+    });
+  }, [chrome?.storage?.local.get([WONDER_ACTIVE_STORAGE_KEY])]);
 
   const { x, y, strategy, positionReference, floating } = useFloating({
     placement: 'right',
@@ -37,37 +45,41 @@ export const Launcher: React.FC = () => {
   }, [selection.textContent, selection.clientRect, positionReference]);
 
   return (
-    <div
-      id="wonder-highlighter"
-      ref={floating}
-      onClick={(e) => e.preventDefault()}
-      onMouseDown={(e) => e.preventDefault()}
-      onMouseUp={(e) => e.preventDefault()}
-      style={{
-        position: strategy,
-        left: x ?? 0,
-        top: y ?? 0,
-        zIndex: '2147483647',
-        color: 'white',
-        transition: 'all 0.2s ease-in-out',
-      }}
-    >
-      <ShadowDom>
-        <ThemeProvider>
-          {open && (
-            <>
-              <AppShell>
-                <Menu
-                  selectedText={selection.textContent}
-                  replaceSelection={selection.replaceSelection}
-                  isContentEditable={selection.isContentEditable}
-                  closeWidget={() => setOpen(false)}
-                />
-              </AppShell>
-            </>
-          )}
-        </ThemeProvider>
-      </ShadowDom>
-    </div>
+    <>
+      {isAppEnabled && (
+        <div
+          id="wonder-highlighter"
+          ref={floating}
+          onClick={(e) => e.preventDefault()}
+          onMouseDown={(e) => e.preventDefault()}
+          onMouseUp={(e) => e.preventDefault()}
+          style={{
+            position: strategy,
+            left: x ?? 0,
+            top: y ?? 0,
+            zIndex: '2147483647',
+            color: 'white',
+            transition: 'all 0.2s ease-in-out',
+          }}
+        >
+          <ShadowDom>
+            <ThemeProvider>
+              {open && (
+                <>
+                  <AppShell>
+                    <Menu
+                      selectedText={selection.textContent}
+                      replaceSelection={selection.replaceSelection}
+                      isContentEditable={selection.isContentEditable}
+                      closeWidget={() => setOpen(false)}
+                    />
+                  </AppShell>
+                </>
+              )}
+            </ThemeProvider>
+          </ShadowDom>
+        </div>
+      )}
+    </>
   );
 };
