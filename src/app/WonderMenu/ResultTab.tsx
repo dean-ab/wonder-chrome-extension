@@ -66,30 +66,32 @@ export const ResultTab: React.FC<IProps> = ({
               >
                 <Text color="grey">Add to shotcuts</Text>
               </Button> */}
-              <CopyButton value={resultText} timeout={2000}>
-                {({ copied, copy }) => (
-                  <Button
-                    sx={{
-                      ':hover': { backgroundColor: 'rgb(243 244 245)' },
-                    }}
-                    onClick={copy}
-                    compact
-                    leftIcon={
-                      copied ? (
-                        <IconCheck size={22} color="green" />
-                      ) : (
-                        <IconCopy size={22} color="grey" />
-                      )
-                    }
-                    variant="subtle"
-                    color="grey"
-                  >
-                    <Text weight={400} color="grey">
-                      Copy
-                    </Text>
-                  </Button>
-                )}
-              </CopyButton>
+              {activeTab === 'edit' && (
+                <CopyButton value={resultText} timeout={2000}>
+                  {({ copied, copy }) => (
+                    <Button
+                      sx={{
+                        ':hover': { backgroundColor: 'rgb(243 244 245)' },
+                      }}
+                      onClick={copy}
+                      compact
+                      leftIcon={
+                        copied ? (
+                          <IconCheck size={22} color="green" />
+                        ) : (
+                          <IconCopy size={22} color="grey" />
+                        )
+                      }
+                      variant="subtle"
+                      color="grey"
+                    >
+                      <Text weight={400} color="grey">
+                        Copy
+                      </Text>
+                    </Button>
+                  )}
+                </CopyButton>
+              )}
             </Flex>
             <Text p="sm" color="#101828" bg="#f3f1ff" size={14} fw={400}>
               {resultText}
@@ -103,10 +105,29 @@ export const ResultTab: React.FC<IProps> = ({
               >
                 Another suggestion
               </Button>
-              {isContentEditable && (
+              {isContentEditable && activeTab === 'edit' ? (
                 <Button size="xs" onClick={replaceText} bg={'#553AF6'}>
-                  Replace text
+                  Use suggestion
                 </Button>
+              ) : (
+                <CopyButton value={resultText} timeout={2000}>
+                  {({ copied, copy }) => (
+                    <Button
+                      leftIcon={
+                        copied ? (
+                          <IconCheck size={22} color="green" />
+                        ) : (
+                          <IconCopy size={22} color="white" />
+                        )
+                      }
+                      size="xs"
+                      onClick={copy}
+                      bg={'#553AF6'}
+                    >
+                      Copy suggestion
+                    </Button>
+                  )}
+                </CopyButton>
               )}
             </Flex>
           </>

@@ -55,8 +55,8 @@ export const ActionWrapper: React.FC<IProps> = ({
       </AccordionControl>
       <Accordion.Panel>
         <Grid align="center" sx={[{ paddingLeft: 37 }]}>
-          {viewedParams.map((parameter) => (
-            <Grid.Col span={3} sx={[{ padding: 3 }]}>
+          {viewedParams.map((parameter, index) => (
+            <Grid.Col key={index} span={3} sx={[{ padding: 3 }]}>
               <Select
                 styles={{
                   label: {
@@ -120,8 +120,11 @@ export const ActionWrapper: React.FC<IProps> = ({
               <Menu.Dropdown>
                 {Object.entries(parametersMap)
                   .filter((obj) => !viewedParams.includes(obj[0]))
-                  .map((param) => (
-                    <Menu.Item onClick={() => handleParamSelect(param[0])}>
+                  .map((param, index) => (
+                    <Menu.Item
+                      key={index}
+                      onClick={() => handleParamSelect(param[0])}
+                    >
                       {param[0]}
                     </Menu.Item>
                   ))}
