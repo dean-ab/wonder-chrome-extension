@@ -9,7 +9,6 @@ import {
   Center,
 } from '@mantine/core';
 import { IconAdjustments, IconCheck, IconX } from '@tabler/icons-react';
-import '../../app/index.css';
 import { AppIcon } from '../../app/WonderApp/AppShell/AppIcon';
 
 export const ExtensionMenu: React.FC = () => {

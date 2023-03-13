@@ -97,6 +97,8 @@ export const ActionWrapper: React.FC<IProps> = ({
             <Menu
               shadow="md"
               position="bottom-start"
+              returnFocus={false}
+              onOpen={() => console.log('FDFSDSFDFSFSDFSDSDFF')}
               styles={{
                 label: {
                   fontSize: 11,
