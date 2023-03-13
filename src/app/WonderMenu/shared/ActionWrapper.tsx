@@ -58,6 +58,7 @@ export const ActionWrapper: React.FC<IProps> = ({
           {viewedParams.map((parameter, index) => (
             <Grid.Col key={index} span={3} sx={[{ padding: 3 }]}>
               <Select
+                placeholder="Pick one"
                 styles={{
                   label: {
                     fontSize: 11,
@@ -94,42 +95,44 @@ export const ActionWrapper: React.FC<IProps> = ({
           <Grid.Col
             span={viewedParams.length > 1 ? viewedParams.length - 1 : 4}
           >
-            <Menu
-              shadow="md"
-              position="bottom-start"
-              styles={{
-                label: {
-                  fontSize: 11,
-                },
-                item: {
-                  '&[data-selected]': {
-                    '&, &:hover': {
-                      backgroundColor: 'transparent',
-                      color: '#553AF6',
-                    },
+            {viewedParams.length !== Object.entries(parametersMap).length && (
+              <Menu
+                shadow="md"
+                position="bottom-start"
+                styles={{
+                  label: {
+                    fontSize: 11,
                   },
-                  fontSize: 11,
-                },
-              }}
-            >
-              <Menu.Target>
-                <ActionIcon variant="light" size="sm" sx={{ marginTop: 22 }}>
-                  <IconPlus size={13} color="#553AF6" />
-                </ActionIcon>
-              </Menu.Target>
-              <Menu.Dropdown>
-                {Object.entries(parametersMap)
-                  .filter((obj) => !viewedParams.includes(obj[0]))
-                  .map((param, index) => (
-                    <Menu.Item
-                      key={index}
-                      onClick={() => handleParamSelect(param[0])}
-                    >
-                      {param[0]}
-                    </Menu.Item>
-                  ))}
-              </Menu.Dropdown>
-            </Menu>
+                  item: {
+                    '&[data-selected]': {
+                      '&, &:hover': {
+                        backgroundColor: 'transparent',
+                        color: '#553AF6',
+                      },
+                    },
+                    fontSize: 11,
+                  },
+                }}
+              >
+                <Menu.Target>
+                  <ActionIcon variant="light" size="sm" sx={{ marginTop: 22 }}>
+                    <IconPlus size={13} color="#553AF6" />
+                  </ActionIcon>
+                </Menu.Target>
+                <Menu.Dropdown>
+                  {Object.entries(parametersMap)
+                    .filter((obj) => !viewedParams.includes(obj[0]))
+                    .map((param, index) => (
+                      <Menu.Item
+                        key={index}
+                        onClick={() => handleParamSelect(param[0])}
+                      >
+                        {param[0]}
+                      </Menu.Item>
+                    ))}
+                </Menu.Dropdown>
+              </Menu>
+            )}
           </Grid.Col>
         </Grid>
       </Accordion.Panel>
