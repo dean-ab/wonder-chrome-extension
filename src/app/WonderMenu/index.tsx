@@ -33,10 +33,14 @@ export const Menu: React.FC<IProps> = ({
 
   const onAnotherSuggestion = async () => {
     const { name, params } = prevParams.current; // get previous params
-    await onSubmitButtonClick(name, params);
+    await onSubmitButtonClick(name, params, true);
   };
 
-  const onSubmitButtonClick = async (name: string, params: RequestParam) => {
+  const onSubmitButtonClick = async (
+    name: string,
+    params: RequestParam,
+    isAnotherSuggesion?: boolean,
+  ) => {
     if (!selectedText) return;
     setViewMode('result');
     setIsLoading(true);
@@ -47,6 +51,7 @@ export const Menu: React.FC<IProps> = ({
         activeTab as string,
         name,
         params,
+        isAnotherSuggesion,
       );
       setResult(resultText);
     } catch (error) {

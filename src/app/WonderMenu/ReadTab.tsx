@@ -46,8 +46,8 @@ export const ReadTab: React.FC<IProps> = ({ onSubmit }) => {
           label="Summarize"
           description="Condense the main ideas and key points of your content into a brief and concise summary."
           parametersMap={{
-            ...FocusOnParams,
             ...LengthParams,
+            ...FocusOnParams,
             ...PurposeParams,
             ...PerspectiveParams,
             ...DetailLevelParams,

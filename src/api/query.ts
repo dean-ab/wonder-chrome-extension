@@ -17,13 +17,15 @@ export async function query(
   operation: string,
   action: string,
   params: RequestParam,
+  isAnotherSuggesion: boolean = false,
 ): Promise<string> {
-  return Promise.resolve('This is text returned from the server');
+  // return Promise.resolve('This is text returned from the server');
   const response = await client.post('v1/query', {
     textInput,
     operation,
     action,
     config: normalizeParams(params),
+    ...(isAnotherSuggesion && { temperature: Math.random() }),
   });
 
   return response.data.result;
