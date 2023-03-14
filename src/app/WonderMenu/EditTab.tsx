@@ -62,7 +62,7 @@ export const EditTab: React.FC<IProps> = ({ onSubmit }) => {
 
         <ActionWrapper
           updateHover={setAccordionValue}
-          name="spell_check"
+          name="grammer"
           label="Spell check"
           description="Correct any grammatical & spelling errors or issues in your text."
           icon={<IconTextSpellcheck stroke={1} size={22} color="#553AF6" />}
