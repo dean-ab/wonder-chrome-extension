@@ -2,6 +2,7 @@ on:
   push:
     branches:
       - main
+      - ci-cd
 
 jobs:
   build-chrome-extension:
@@ -13,6 +14,7 @@ jobs:
 
       - name: Build
         run: |-
+          yarn install
           yarn build
           zip -r chrome-extension-${{ github.event.pull_request.head.sha }}.zip dist
 
