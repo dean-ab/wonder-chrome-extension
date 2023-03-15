@@ -54,11 +54,8 @@ jobs:
         run: |-
           npm install -g chrome-webstore-upload-cli
 
-      - name: Upload step
+      - name:
+          Upload step
+          # $ chrome-webstore-upload upload --source extension.zip --extension-id $EXTENSION_ID --client-id $CLIENT_ID --client-secret $CLIENT_SECRET --refresh-token $REFRESH_TOKEN
         run: |-
-          chrome-webstore-upload upload \\
-            --source chrome-extension-${{ github.event.pull_request.head.sha }}.zip \\
-            --extension-id ${{ env.EXTENSION_ID }} \\
-            --client-id ${{ env.CI_GOOGLE_CLIENT_ID }} \\
-            --client-secret ${{ env.CI_GOOGLE_CLIENT_SECRET }} \\
-            --refresh-token ${{ env.CI_GOOGLE_REFRESH_TOKEN }}
+          chrome-webstore-upload upload --source chrome-extension-${{ github.event.pull_request.head.sha }}.zip --extension-id ${{ env.EXTENSION_ID }} --client-id ${{ env.CI_GOOGLE_CLIENT_ID }} --client-secret ${{ env.CI_GOOGLE_CLIENT_SECRET }} --refresh-token ${{ env.CI_GOOGLE_REFRESH_TOKEN }}
