@@ -6,6 +6,15 @@ import {
   IconTextSpellcheck,
   IconWriting,
 } from '@tabler/icons-react';
+import {
+  DetailLevelParams,
+  FocusOnParams,
+  GeneralParamGroup,
+  LengthParams,
+  OutputLanguageParams,
+  PerspectiveParams,
+  PurposeParams,
+} from './Parameters';
 
 interface IProps {
   onSubmit: any;
@@ -20,7 +29,6 @@ export const EditTab: React.FC<IProps> = ({ onSubmit }) => {
         mx="auto"
         styles={{
           control: {
-            paddingBottom: 6,
             '&[data-active]': {
               ':hover': {
                 backgroundColor: 'transparent',
@@ -34,30 +42,8 @@ export const EditTab: React.FC<IProps> = ({ onSubmit }) => {
           name="rewrite"
           label="Rewrite"
           description="Make significant adjustments to make it clearer or more concise."
-          parametersMap={{
-            tone: [
-              'formal',
-              'informal',
-              'sarcastic',
-              'polite',
-              'humorous',
-              'serious',
-              'professional',
-              'friendly',
-              'presuasive',
-              'empathic',
-              'condescending',
-            ],
-            Length: ['short', 'medium', 'long', 'very_long', 'custom'],
-            Format: [
-              'article',
-              'blog_post',
-              'research_paper',
-              'speech',
-              'email',
-            ],
-          }}
-          icon={<IconWriting stroke={1} size={22} color="#553AF6" />}
+          parametersMap={{ ...GeneralParamGroup }}
+          icon={<IconWriting stroke={1} size={23} color="#553AF6" />}
           onSubmit={onSubmit}
         />
 
@@ -67,27 +53,19 @@ export const EditTab: React.FC<IProps> = ({ onSubmit }) => {
           label="Tune"
           description="Make slight adjustments without changing the overall meaning."
           icon={
-            <IconAdjustmentsHorizontal stroke={1} size={22} color="#553AF6" />
+            <IconAdjustmentsHorizontal stroke={1} size={23} color="#553AF6" />
           }
-          parametersMap={{
-            Tone: ['Casual', 'Formal'],
-            Length: ['Short', 'Medium', 'Long'],
-            Format: ['Paragraph', 'Bullet points', 'Numbered list'],
-          }}
+          parametersMap={{ ...GeneralParamGroup }}
           onSubmit={onSubmit}
         />
 
         <ActionWrapper
           updateHover={setAccordionValue}
-          name="spell_check"
+          name="grammer"
           label="Spell check"
           description="Correct any grammatical & spelling errors or issues in your text."
-          icon={<IconTextSpellcheck stroke={1} size={22} color="#553AF6" />}
-          parametersMap={{
-            Tone: ['Casual', 'Formal'],
-            Length: ['Short', 'Medium', 'Long'],
-            Format: ['Paragraph', 'Bullet points', 'Numbered list'],
-          }}
+          icon={<IconTextSpellcheck stroke={1} size={23} color="#553AF6" />}
+          parametersMap={{}}
           onSubmit={onSubmit}
         />
       </Accordion>

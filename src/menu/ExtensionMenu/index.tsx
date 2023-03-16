@@ -12,8 +12,28 @@ import { IconAdjustments, IconCheck, IconX } from '@tabler/icons-react';
 import '../../app/index.css';
 import { AppIcon } from '../../app/WonderApp/AppShell/AppIcon';
 
+export const WONDER_ACTIVE_STORAGE_KEY = 'wonder-active';
+
 export const ExtensionMenu: React.FC = () => {
-  const [checked, setChecked] = useState(false);
+  const [checked, setChecked] = useState(true);
+
+  useEffect(() => {
+    chrome?.storage?.local.get([WONDER_ACTIVE_STORAGE_KEY], (result) => {
+      if (result[WONDER_ACTIVE_STORAGE_KEY] === undefined) {
+        chrome.storage.local
+          .set({ [WONDER_ACTIVE_STORAGE_KEY]: true })
+          .then(() => {
+            setChecked(true);
+          });
+      }
+      setChecked(result[WONDER_ACTIVE_STORAGE_KEY]);
+    });
+  }, []);
+
+  const hanldeSwithChange = async (value: boolean) => {
+    await chrome.storage.local.set({ [WONDER_ACTIVE_STORAGE_KEY]: value });
+    setChecked(value);
+  };
 
   return (
     <>
@@ -37,7 +57,9 @@ export const ExtensionMenu: React.FC = () => {
             <Group position="center">
               <Switch
                 checked={checked}
-                onChange={(event) => setChecked(event.currentTarget.checked)}
+                onChange={(event) =>
+                  hanldeSwithChange(event.currentTarget.checked)
+                }
                 color="teal"
                 label={checked ? 'On' : 'Off'}
                 size="lg"

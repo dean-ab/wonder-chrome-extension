@@ -18,6 +18,8 @@ interface IProps {
   replaceText: () => void;
   isContentEditable: boolean;
   isLoading: boolean;
+  submitAgain: () => void;
+  goBack: () => void;
 }
 
 export const ResultTab: React.FC<IProps> = ({
@@ -26,20 +28,26 @@ export const ResultTab: React.FC<IProps> = ({
   replaceText,
   isContentEditable,
   isLoading,
+  submitAgain,
+  goBack,
 }) => {
   const analytics = useAnalytics();
 
-
   const onMount = () => {
-    analytics.track(Events.SuggestionScreenDisplayed, { suggested_text: resultText });
-  }
+    analytics.track(Events.SuggestionScreenDisplayed, {
+      suggested_text: resultText,
+    });
+  };
 
   const onCopy = (copyAction: () => void) => {
     analytics.track(Events.CopyButtonClicked);
     copyAction();
-  }
+  };
 
   useEffect(onMount, []);
+  const handleClickBack = () => {
+    goBack();
+  };
 
   return (
     <Tabs.Panel value={activeTab}>
@@ -50,8 +58,22 @@ export const ResultTab: React.FC<IProps> = ({
           </Flex>
         ) : (
           <>
-            <Flex px="xs" justify={'flex-end'}>
+            <Flex px="xs" justify={'space-between'}>
               <Button
+                onClick={handleClickBack}
+                leftIcon={<IconChevronLeft size={22} color="grey" />}
+                variant="subtle"
+                sx={{
+                  ':hover': { backgroundColor: 'rgb(243 244 245)' },
+                }}
+                compact
+                color="grey"
+              >
+                <Text weight={400} color="grey">
+                  Back
+                </Text>
+              </Button>
+              {/* <Button
                 compact
                 leftIcon={<IconBookmark color="grey" />}
                 variant="subtle"
@@ -59,25 +81,33 @@ export const ResultTab: React.FC<IProps> = ({
               >
                 <Text color="grey">Add to shotcuts</Text>
               </Button>
-              <CopyButton value={resultText} timeout={2000}>
-                {({ copied, copy }) => (
-                  <Button
-                    onClick={() => onCopy(copy)}
-                    compact
-                    leftIcon={
-                      copied ? (
-                        <IconCheck size={16} color="green" />
-                      ) : (
-                        <IconCopy color="grey" />
-                      )
-                    }
-                    variant="subtle"
-                    color="white"
-                  >
-                    <Text color="grey">Copy</Text>
-                  </Button>
-                )}
-              </CopyButton>
+              */}
+              {activeTab === 'edit' && (
+                <CopyButton value={resultText} timeout={2000}>
+                  {({ copied, copy }) => (
+                    <Button
+                      sx={{
+                        ':hover': { backgroundColor: 'rgb(243 244 245)' },
+                      }}
+                      onClick={() => onCopy(copy)}
+                      compact
+                      leftIcon={
+                        copied ? (
+                          <IconCheck size={22} color="green" />
+                        ) : (
+                          <IconCopy size={22} color="grey" />
+                        )
+                      }
+                      variant="subtle"
+                      color="grey"
+                    >
+                      <Text weight={400} color="grey">
+                        Copy
+                      </Text>
+                    </Button>
+                  )}
+                </CopyButton>
+              )}
             </Flex>
             <Text p="sm" color="#101828" bg="#f3f1ff" size={14} fw={400}>
               {resultText}
@@ -85,16 +115,35 @@ export const ResultTab: React.FC<IProps> = ({
             <Flex px="xs" justify={'flex-end'} gap={8}>
               <Button
                 size="xs"
-                onClick={replaceText}
+                onClick={submitAgain}
                 color={'white'}
                 variant="outline"
               >
                 Another suggestion
               </Button>
-              {isContentEditable && (
+              {isContentEditable && activeTab === 'edit' ? (
                 <Button size="xs" onClick={replaceText} bg={'#553AF6'}>
-                  Replace text
+                  Use suggestion
                 </Button>
+              ) : (
+                <CopyButton value={resultText} timeout={2000}>
+                  {({ copied, copy }) => (
+                    <Button
+                      leftIcon={
+                        copied ? (
+                          <IconCheck size={22} color="green" />
+                        ) : (
+                          <IconCopy size={22} color="white" />
+                        )
+                      }
+                      size="xs"
+                      onClick={() => onCopy(copy)}
+                      bg={'#553AF6'}
+                    >
+                      Copy suggestion
+                    </Button>
+                  )}
+                </CopyButton>
               )}
             </Flex>
           </>

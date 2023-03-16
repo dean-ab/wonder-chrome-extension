@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
-  "name": "WonderWord",
-  "version": "1.0.0",
+  "name": "Wonder",
+  "version": "1.0.2",
   "action": { "default_popup": "index.html" },
   "content_scripts": [
     {
@@ -9,8 +9,6 @@
       "matches": ["<all_urls>"]
     }
   ],
-  "icons": {
-    "16": "src/assets/feather.png"
-  },
-  "permissions": ["management"]
+  "icons": {},
+  "permissions": ["storage"]
 }
