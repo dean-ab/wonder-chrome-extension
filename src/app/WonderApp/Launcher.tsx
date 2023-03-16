@@ -5,6 +5,7 @@ import { ShadowDom } from './ShadowDom';
 import { ThemeProvider } from './ThemeProvider';
 import { AppShell } from './AppShell/AppShell';
 import { Menu } from '../WonderMenu';
+import { AnalyticsProvider } from '../../analytics';
 import { WONDER_ACTIVE_STORAGE_KEY } from '../../menu/ExtensionMenu';
 
 export const Launcher: React.FC = () => {
@@ -64,18 +65,20 @@ export const Launcher: React.FC = () => {
         >
           <ShadowDom>
             <ThemeProvider>
-              {open && (
-                <>
-                  <AppShell>
-                    <Menu
-                      selectedText={selection.textContent}
-                      replaceSelection={selection.replaceSelection}
-                      isContentEditable={selection.isContentEditable}
-                      closeWidget={() => setOpen(false)}
-                    />
-                  </AppShell>
-                </>
-              )}
+              <AnalyticsProvider>
+                {open && (
+                  <>
+                    <AppShell selection={selection}>
+                      <Menu
+                        selectedText={selection.textContent}
+                        replaceSelection={selection.replaceSelection}
+                        isContentEditable={selection.isContentEditable}
+                        closeWidget={() => setOpen(false)}
+                      />
+                    </AppShell>
+                  </>
+                )}
+              </AnalyticsProvider>
             </ThemeProvider>
           </ShadowDom>
         </div>

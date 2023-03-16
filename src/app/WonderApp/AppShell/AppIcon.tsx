@@ -1,6 +1,4 @@
 import React, { forwardRef, Ref } from 'react';
-import clsx from 'clsx';
-import styles from './AppIcon.module.css';
 import { ReactComponent as AppIconSvg } from '../../../assets/wonderIcon.svg';
 import { createStyles } from '@mantine/core';
 
@@ -21,6 +19,7 @@ const useStyles = createStyles((theme) => ({
     border:
       '1px solid linear-gradient(0deg, #e4e7ec, #e4e7ec) linear-gradient(0deg, #ffffff, #ffffff)',
     cursor: 'pointer',
+
   },
 }));
 

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   Text,
   Tabs,
@@ -9,7 +9,8 @@ import {
   ActionIcon,
   CopyButton,
 } from '@mantine/core';
-import { IconCopy, IconCheck, IconChevronLeft } from '@tabler/icons-react';
+import { IconCopy, IconBookmark, IconCheck } from '@tabler/icons-react';
+import { Events, useAnalytics } from '../../analytics';
 
 interface IProps {
   activeTab: string;
@@ -30,6 +31,20 @@ export const ResultTab: React.FC<IProps> = ({
   submitAgain,
   goBack,
 }) => {
+  const analytics = useAnalytics();
+
+  const onMount = () => {
+    analytics.track(Events.SuggestionScreenDisplayed, {
+      suggested_text: resultText,
+    });
+  };
+
+  const onCopy = (copyAction: () => void) => {
+    analytics.track(Events.CopyButtonClicked);
+    copyAction();
+  };
+
+  useEffect(onMount, []);
   const handleClickBack = () => {
     goBack();
   };
@@ -65,7 +80,8 @@ export const ResultTab: React.FC<IProps> = ({
                 color="white"
               >
                 <Text color="grey">Add to shotcuts</Text>
-              </Button> */}
+              </Button>
+              */}
               {activeTab === 'edit' && (
                 <CopyButton value={resultText} timeout={2000}>
                   {({ copied, copy }) => (
@@ -73,7 +89,7 @@ export const ResultTab: React.FC<IProps> = ({
                       sx={{
                         ':hover': { backgroundColor: 'rgb(243 244 245)' },
                       }}
-                      onClick={copy}
+                      onClick={() => onCopy(copy)}
                       compact
                       leftIcon={
                         copied ? (
@@ -121,7 +137,7 @@ export const ResultTab: React.FC<IProps> = ({
                         )
                       }
                       size="xs"
-                      onClick={copy}
+                      onClick={() => onCopy(copy)}
                       bg={'#553AF6'}
                     >
                       Copy suggestion
