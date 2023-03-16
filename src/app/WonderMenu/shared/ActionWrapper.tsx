@@ -60,7 +60,7 @@ export const ActionWrapper: React.FC<IProps> = ({
               <Grid.Col key={index} span={3} sx={[{ padding: 3 }]}>
                 <Select
                   clearable
-                  placeholder="Pick one"
+                  placeholder="Select one"
                   styles={{
                     label: {
                       fontSize: 11,

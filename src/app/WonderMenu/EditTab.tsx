@@ -29,7 +29,6 @@ export const EditTab: React.FC<IProps> = ({ onSubmit }) => {
         mx="auto"
         styles={{
           control: {
-            paddingBottom: 6,
             '&[data-active]': {
               ':hover': {
                 backgroundColor: 'transparent',
@@ -44,7 +43,7 @@ export const EditTab: React.FC<IProps> = ({ onSubmit }) => {
           label="Rewrite"
           description="Make significant adjustments to make it clearer or more concise."
           parametersMap={{ ...GeneralParamGroup }}
-          icon={<IconWriting stroke={1} size={22} color="#553AF6" />}
+          icon={<IconWriting stroke={1} size={23} color="#553AF6" />}
           onSubmit={onSubmit}
         />
 
@@ -54,7 +53,7 @@ export const EditTab: React.FC<IProps> = ({ onSubmit }) => {
           label="Tune"
           description="Make slight adjustments without changing the overall meaning."
           icon={
-            <IconAdjustmentsHorizontal stroke={1} size={22} color="#553AF6" />
+            <IconAdjustmentsHorizontal stroke={1} size={23} color="#553AF6" />
           }
           parametersMap={{ ...GeneralParamGroup }}
           onSubmit={onSubmit}
@@ -65,7 +64,7 @@ export const EditTab: React.FC<IProps> = ({ onSubmit }) => {
           name="grammer"
           label="Spell check"
           description="Correct any grammatical & spelling errors or issues in your text."
-          icon={<IconTextSpellcheck stroke={1} size={22} color="#553AF6" />}
+          icon={<IconTextSpellcheck stroke={1} size={23} color="#553AF6" />}
           parametersMap={{}}
           onSubmit={onSubmit}
         />

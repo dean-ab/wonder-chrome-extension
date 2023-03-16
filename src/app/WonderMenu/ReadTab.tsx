@@ -31,7 +31,6 @@ export const ReadTab: React.FC<IProps> = ({ onSubmit }) => {
         mx="auto"
         styles={{
           control: {
-            paddingBottom: 6,
             '&[data-active]': {
               ':hover': {
                 backgroundColor: 'transparent',
@@ -52,7 +51,7 @@ export const ReadTab: React.FC<IProps> = ({ onSubmit }) => {
             ...PerspectiveParams,
             ...DetailLevelParams,
           }}
-          icon={<IconWriting stroke={1} size={22} color="#553AF6" />}
+          icon={<IconWriting stroke={1} size={23} color="#553AF6" />}
           onSubmit={onSubmit}
         />
 
@@ -62,7 +61,7 @@ export const ReadTab: React.FC<IProps> = ({ onSubmit }) => {
           label="Explain"
           description="Get clear and detailed understanding of your content."
           icon={
-            <IconAdjustmentsHorizontal stroke={1} size={22} color="#553AF6" />
+            <IconAdjustmentsHorizontal stroke={1} size={23} color="#553AF6" />
           }
           parametersMap={{
             ...LengthParams,
@@ -80,7 +79,7 @@ export const ReadTab: React.FC<IProps> = ({ onSubmit }) => {
           name="translate"
           label="Translate"
           description="Convert your text from one language to another."
-          icon={<IconTextSpellcheck stroke={1} size={22} color="#553AF6" />}
+          icon={<IconTextSpellcheck stroke={1} size={23} color="#553AF6" />}
           parametersMap={{ ...OutputLanguageParams }}
           onSubmit={onSubmit}
         />

@@ -19,7 +19,14 @@ export const ExtensionMenu: React.FC = () => {
 
   useEffect(() => {
     chrome?.storage?.local.get([WONDER_ACTIVE_STORAGE_KEY], (result) => {
-      setChecked(!!result[WONDER_ACTIVE_STORAGE_KEY]);
+      if (result[WONDER_ACTIVE_STORAGE_KEY] === undefined) {
+        chrome.storage.local
+          .set({ [WONDER_ACTIVE_STORAGE_KEY]: true })
+          .then(() => {
+            setChecked(true);
+          });
+      }
+      setChecked(result[WONDER_ACTIVE_STORAGE_KEY]);
     });
   }, []);
 

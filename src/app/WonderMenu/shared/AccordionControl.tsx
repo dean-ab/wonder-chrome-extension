@@ -4,6 +4,7 @@ import {
   AccordionControlProps,
   ActionIcon,
   Box,
+  Button,
   ThemeIcon,
 } from '@mantine/core';
 import { ReactComponent as SubmitIcon } from '../../../assets/submit.svg';
@@ -20,12 +21,9 @@ export const AccordionControl: React.FC<IProps> = (props) => {
         chevron={<></>}
         {...props}
       />
-      <ActionIcon size="xl">
-        <SubmitIcon
-          style={{ height: 18, width: 18 }}
-          onClick={props.onSubmit}
-        />
-      </ActionIcon>
+      <Button onClick={props.onSubmit} bg={'transparent'} variant="subtle">
+        <SubmitIcon style={{ height: 18, width: 18 }} />
+      </Button>
     </Box>
   );
 };
