@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import { Badge, Tabs } from '@mantine/core';
+import { Badge, FocusTrap, Tabs } from '@mantine/core';
 import { EditTab } from './EditTab';
 import { ReadTab } from './ReadTab';
 import { WriteTab } from './WriteTab';
@@ -71,37 +71,35 @@ export const Menu: React.FC<IProps> = ({
   };
 
   return (
-    <div>
-      <Tabs value={activeTab} onTabChange={onTabChange} color="indigo">
-        <Tabs.List grow defaultValue="edit">
-          <Tabs.Tab value="edit" disabled={!isContentEditable}>
-            Edit
-          </Tabs.Tab>
-          <Tabs.Tab value="read">Read</Tabs.Tab>
-          <Tabs.Tab value="write" disabled>
-            Write <Badge>Coming soon</Badge>
-          </Tabs.Tab>
-        </Tabs.List>
-        {viewMode === 'prompt' ? (
-          <>
-            <EditTab onSubmit={onSubmitButtonClick} />
-            <ReadTab onSubmit={onSubmitButtonClick} />
-            <WriteTab />
-          </>
-        ) : (
-          activeTab && (
-            <ResultTab
-              isLoading={isLoading}
-              activeTab={activeTab}
-              resultText={result}
-              submitAgain={onAnotherSuggestion}
-              replaceText={onReplaceSelection}
-              isContentEditable={isContentEditable}
-              goBack={() => setViewMode('prompt')}
-            />
-          )
-        )}
-      </Tabs>
-    </div>
+    <Tabs value={activeTab} onTabChange={onTabChange} color="indigo">
+      <Tabs.List grow defaultValue="edit">
+        <Tabs.Tab value="edit" disabled={!isContentEditable}>
+          Edit
+        </Tabs.Tab>
+        <Tabs.Tab value="read">Read</Tabs.Tab>
+        <Tabs.Tab value="write" disabled>
+          Write <Badge>Coming soon</Badge>
+        </Tabs.Tab>
+      </Tabs.List>
+      {viewMode === 'prompt' ? (
+        <>
+          <EditTab onSubmit={onSubmitButtonClick} />
+          <ReadTab onSubmit={onSubmitButtonClick} />
+          <WriteTab />
+        </>
+      ) : (
+        activeTab && (
+          <ResultTab
+            isLoading={isLoading}
+            activeTab={activeTab}
+            resultText={result}
+            submitAgain={onAnotherSuggestion}
+            replaceText={onReplaceSelection}
+            isContentEditable={isContentEditable}
+            goBack={() => setViewMode('prompt')}
+          />
+        )
+      )}
+    </Tabs>
   );
 };

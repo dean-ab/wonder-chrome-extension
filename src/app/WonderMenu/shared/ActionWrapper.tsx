@@ -1,5 +1,12 @@
-import React from 'react';
-import { Accordion, Select, Grid, ActionIcon, Menu } from '@mantine/core';
+import React, { useRef } from 'react';
+import {
+  Accordion,
+  Select,
+  Grid,
+  ActionIcon,
+  Menu,
+  Button,
+} from '@mantine/core';
 import { AccordionControl } from '../shared/AccordionControl';
 import { AccordionLabel } from '../shared/AccordionLabel';
 import { IconPlus } from '@tabler/icons-react';
@@ -24,6 +31,7 @@ export const ActionWrapper: React.FC<IProps> = ({
   updateHover,
   onSubmit,
 }) => {
+  const menuRef = useRef();
   const [viewedParams, setViewedParams] = React.useState<string[]>([
     Object.keys(parametersMap)?.[0],
   ]);
@@ -97,8 +105,6 @@ export const ActionWrapper: React.FC<IProps> = ({
             <Menu
               shadow="md"
               position="bottom-start"
-              returnFocus={false}
-              onOpen={() => console.log('FDFSDSFDFSFSDFSDSDFF')}
               styles={{
                 label: {
                   fontSize: 11,

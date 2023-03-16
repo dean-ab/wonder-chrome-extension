@@ -35,7 +35,10 @@ export const ShadowDom: FC<IShadowDomProps> = ({
       let shadowRoot: ShadowRoot;
 
       if (!alreadyInShadowDom && isSupported) {
-        shadowRoot = shadowHost.attachShadow({ mode: 'open' });
+        shadowRoot = shadowHost.attachShadow({
+          mode: 'open',
+          delegatesFocus: true,
+        });
 
         // TODO: Figure out how injecting style elements on built version.
         const styleElements = document.head.querySelectorAll<HTMLStyleElement>(

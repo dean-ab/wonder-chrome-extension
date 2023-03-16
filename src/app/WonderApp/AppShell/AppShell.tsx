@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Popover, Transition } from '@mantine/core';
+import { Button, Popover, Transition } from '@mantine/core';
 import { Menu } from '../../WonderMenu';
 import { AppIcon } from './AppIcon';
 
@@ -19,6 +19,8 @@ export const AppShell = ({ children }: IProps) => {
           padding: 0,
         },
       })}
+      trapFocus={true}
+      returnFocus={false}
     >
       <Popover.Target>
         <AppIcon />
