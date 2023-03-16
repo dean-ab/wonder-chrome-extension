@@ -9,7 +9,7 @@ import {
   ActionIcon,
   CopyButton,
 } from '@mantine/core';
-import { IconCopy, IconBookmark, IconCheck } from '@tabler/icons-react';
+import { IconCopy, IconChevronLeft, IconCheck } from '@tabler/icons-react';
 import { Events, useAnalytics } from '../../analytics';
 
 interface IProps {
