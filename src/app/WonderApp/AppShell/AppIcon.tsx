@@ -15,7 +15,7 @@ const useStyles = createStyles((theme) => ({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    background: 'linear-gradient(90deg, #553af6, #553af6 100%)',
+    background: 'linear-gradient(139.56deg, #553AF6 7.54%, #A33AF6 109.2%)',
     border: '1px solid white',
     boxShadow: '0px 0px 5px 0px #9286ff;',
     cursor: 'pointer',
