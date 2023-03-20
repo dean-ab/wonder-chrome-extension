@@ -10,5 +10,8 @@
     }
   ],
   "icons": {},
-  "permissions": ["storage"]
+  "permissions": ["storage", "tabs", "contextMenus"],
+  "background": {
+    "service_worker": "background.js"
+  }
 }
