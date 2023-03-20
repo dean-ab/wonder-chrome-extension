@@ -9,6 +9,11 @@
       "matches": ["<all_urls>"]
     }
   ],
-  "icons": {},
-  "permissions": ["storage"]
+  "icons": {
+    "16": "icon-bitty.png"
+  },
+  "permissions": ["storage", "tabs", "contextMenus"],
+  "background": {
+    "service_worker": "background.js"
+  }
 }
