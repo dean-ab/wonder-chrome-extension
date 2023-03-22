@@ -29,28 +29,17 @@ export const ExtensionMenu: React.FC = () => {
   };
 
   return (
-    <Paper p={15}>
-      <Center maw={400} h={500} mx="auto">
+    <Paper py={40} px={15}>
+      <Center maw={400} mx="auto">
         <Flex
           maw={500}
           justify="space-between"
-          align="center"
+          align="flex-start"
           direction="column"
           gap={30}
         >
-          <Flex
-            justify="space-between"
-            align="center"
-            direction="row"
-            gap={120}
-          >
-            <Image
-              maw={240}
-              mx="auto"
-              radius="md"
-              src={menuLogo}
-              alt="Random image"
-            />
+          <Flex justify="space-between" align="center" direction="row" gap={60}>
+            <Image src={menuLogo} alt="Random image" />
             <Group position="center">
               <Switch
                 checked={checked}
@@ -59,7 +48,7 @@ export const ExtensionMenu: React.FC = () => {
                 }
                 color="teal"
                 label={checked ? 'On' : 'Off'}
-                size="lg"
+                size="md"
                 thumbIcon={
                   checked ? (
                     <IconCheck size="1rem" color={'green'} stroke={3} />
