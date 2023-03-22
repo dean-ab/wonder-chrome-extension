@@ -51,7 +51,12 @@ export const Menu: React.FC<IProps> = ({
     setViewMode('result');
     setIsLoading(true);
 
-    analytics.track(Events.ActionClicked, { name, params, text: selectedText, mode: activeTab });
+    analytics.track(Events.ActionClicked, {
+      name,
+      params,
+      text: selectedText,
+      mode: activeTab,
+    });
 
     try {
       const resultText = await api.query(
@@ -74,7 +79,10 @@ export const Menu: React.FC<IProps> = ({
     if (!result) return;
 
     // TODO: Need to move all params state to this component and add this to the event here.
-    analytics.track(Events.ReplaceTextClicked, { suggestedText: result, originalText: selectedText })
+    analytics.track(Events.ReplaceTextClicked, {
+      suggestedText: result,
+      originalText: selectedText,
+    });
     replaceSelection(result);
     closeWidget();
   };
@@ -91,8 +99,9 @@ export const Menu: React.FC<IProps> = ({
       <Tabs
         value={activeTab}
         onTabChange={onTabChange}
-        color="indigo"
+        sx={{ backgroundColor: '#F9F9F9' }}
         styles={(theme) => ({
+          backgroundColor: 'white',
           tab: {
             width: 80,
             margin: '0px 40px',

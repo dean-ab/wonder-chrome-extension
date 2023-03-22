@@ -1,16 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import {
-  ActionIcon,
-  Image,
-  Flex,
-  Group,
-  Switch,
-  Text,
-  Center,
-} from '@mantine/core';
-import { IconAdjustments, IconCheck, IconX } from '@tabler/icons-react';
+import { Image, Flex, Group, Switch, Text, Center } from '@mantine/core';
+import { IconCheck, IconX } from '@tabler/icons-react';
 import '../../app/index.css';
-import { AppIcon } from '../../app/WonderApp/AppShell/AppIcon';
+import menuLogo from './menu-logo.png';
+import menuGif from './menu-gif.gif';
 
 export const WONDER_ACTIVE_STORAGE_KEY = 'wonder-active';
 
@@ -51,9 +44,13 @@ export const ExtensionMenu: React.FC = () => {
             direction="row"
             gap={120}
           >
-            <ActionIcon color="indigo" size="xl">
-              <AppIcon size={30} />
-            </ActionIcon>
+            <Image
+              maw={240}
+              mx="auto"
+              radius="md"
+              src={menuLogo}
+              alt="Random image"
+            />
             <Group position="center">
               <Switch
                 checked={checked}
@@ -74,10 +71,10 @@ export const ExtensionMenu: React.FC = () => {
             </Group>
           </Flex>
           <Image
-            maw={300}
+            maw={500}
             mx="auto"
             radius="md"
-            src="https://images.unsplash.com/photo-1627552245715-77d79bbf6fe2?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=640&q=80"
+            src={menuGif}
             alt="Random image"
           />
           <Text fw={600} fz="lg" color={'#101828'}>
@@ -87,9 +84,9 @@ export const ExtensionMenu: React.FC = () => {
             Simply select the text, click on the extension icon, choose the
             desired action, and let the magic happen!
           </Text>
-          <Text fz="sm" ta={'center'} color={'grey'}>
+          {/* <Text fz="sm" ta={'center'} color={'grey'}>
             Share with us your feedback feedback@wonder.ai
-          </Text>
+          </Text> */}
         </Flex>
       </Center>
     </>
