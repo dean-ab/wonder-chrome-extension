@@ -1,16 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import {
-  ActionIcon,
-  Image,
-  Flex,
-  Group,
-  Switch,
-  Text,
-  Center,
-} from '@mantine/core';
-import { IconAdjustments, IconCheck, IconX } from '@tabler/icons-react';
+import { Image, Flex, Group, Switch, Text, Center, Paper } from '@mantine/core';
+import { IconCheck, IconX } from '@tabler/icons-react';
 import '../../app/index.css';
-import { AppIcon } from '../../app/WonderApp/AppShell/AppIcon';
+import menuLogo from './menu-logo.png';
+import menuGif from './menu-gif.gif';
 
 export const WONDER_ACTIVE_STORAGE_KEY = 'wonder-active';
 
@@ -36,24 +29,17 @@ export const ExtensionMenu: React.FC = () => {
   };
 
   return (
-    <>
-      <Center maw={400} h={500} mx="auto">
+    <Paper py={40} px={15}>
+      <Center maw={400} mx="auto">
         <Flex
           maw={500}
           justify="space-between"
-          align="center"
+          align="flex-start"
           direction="column"
           gap={30}
         >
-          <Flex
-            justify="space-between"
-            align="center"
-            direction="row"
-            gap={120}
-          >
-            <ActionIcon color="indigo" size="xl">
-              <AppIcon size={30} />
-            </ActionIcon>
+          <Flex justify="space-between" align="center" direction="row" gap={60}>
+            <Image src={menuLogo} alt="Random image" />
             <Group position="center">
               <Switch
                 checked={checked}
@@ -62,7 +48,7 @@ export const ExtensionMenu: React.FC = () => {
                 }
                 color="teal"
                 label={checked ? 'On' : 'Off'}
-                size="lg"
+                size="md"
                 thumbIcon={
                   checked ? (
                     <IconCheck size="1rem" color={'green'} stroke={3} />
@@ -74,10 +60,10 @@ export const ExtensionMenu: React.FC = () => {
             </Group>
           </Flex>
           <Image
-            maw={300}
+            maw={500}
             mx="auto"
             radius="md"
-            src="https://images.unsplash.com/photo-1627552245715-77d79bbf6fe2?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=640&q=80"
+            src={menuGif}
             alt="Random image"
           />
           <Text fw={600} fz="lg" color={'#101828'}>
@@ -87,11 +73,11 @@ export const ExtensionMenu: React.FC = () => {
             Simply select the text, click on the extension icon, choose the
             desired action, and let the magic happen!
           </Text>
-          <Text fz="sm" ta={'center'} color={'grey'}>
+          {/* <Text fz="sm" ta={'center'} color={'grey'}>
             Share with us your feedback feedback@wonder.ai
-          </Text>
+          </Text> */}
         </Flex>
       </Center>
-    </>
+    </Paper>
   );
 };
