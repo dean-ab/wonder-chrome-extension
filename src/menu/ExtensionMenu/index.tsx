@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Image, Flex, Group, Switch, Text, Center } from '@mantine/core';
+import { Image, Flex, Group, Switch, Text, Center, Paper } from '@mantine/core';
 import { IconCheck, IconX } from '@tabler/icons-react';
 import '../../app/index.css';
 import menuLogo from './menu-logo.png';
@@ -29,7 +29,7 @@ export const ExtensionMenu: React.FC = () => {
   };
 
   return (
-    <>
+    <Paper p={15}>
       <Center maw={400} h={500} mx="auto">
         <Flex
           maw={500}
@@ -89,6 +89,6 @@ export const ExtensionMenu: React.FC = () => {
           </Text> */}
         </Flex>
       </Center>
-    </>
+    </Paper>
   );
 };
