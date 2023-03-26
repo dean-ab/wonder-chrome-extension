@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import { Alert, Badge, Tabs } from '@mantine/core';
+import { Badge, Tabs } from '@mantine/core';
 import { EditTab } from './EditTab';
 import { ReadTab } from './ReadTab';
 import { WriteTab } from './WriteTab';
@@ -7,12 +7,9 @@ import * as api from '../../api/query';
 import { ResultTab } from './ResultTab';
 import { RequestParam } from '../../types/RequestParams';
 import { Events, useAnalytics } from '../../analytics';
+import { ErrorPage } from './ErrorPage';
 
 export type ViewMode = 'prompt' | 'result' | 'error';
-
-import { createStyles } from '@mantine/core';
-import { IconAlertCircle } from '@tabler/icons-react';
-import { ErrorPage } from './ErrorPage';
 
 interface IProps {
   selectedText?: string;
