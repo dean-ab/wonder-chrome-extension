@@ -49,7 +49,7 @@ export const ErrorPage: React.FC<IProps> = ({
               title="Something went wrong"
               color="red"
             >
-              Please try another suggestion or try again from scratch.
+              Please try again or start from scratch.
             </Alert>
             <Flex px="xs" justify={'flex-end'} gap={8}>
               <Button

@@ -64,8 +64,9 @@ export const Menu: React.FC<IProps> = ({
         isAnotherSuggesion,
       );
       setResult(resultText);
-    } catch (error) {
+    } catch (error: any) {
       console.error(error);
+      analytics.track(Events.ErrorPageDisplayed, { error: error.message });
       setViewMode('error');
     }
     setIsLoading(false);
