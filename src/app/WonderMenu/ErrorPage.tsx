@@ -46,11 +46,10 @@ export const ErrorPage: React.FC<IProps> = ({
             </Flex>
             <Alert
               icon={<IconAlertCircle size="1rem" />}
-              title="Bummer!"
+              title="Something went wrong"
               color="red"
             >
-              Something terrible happened! You made a mistake and there is no
-              going back, your data was lost forever!
+              Please try again or start from scratch.
             </Alert>
             <Flex px="xs" justify={'flex-end'} gap={8}>
               <Button
