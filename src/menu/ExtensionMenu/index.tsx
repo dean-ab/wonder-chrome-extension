@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Image, Flex, Group, Switch, Text, Center, Paper } from '@mantine/core';
 import { IconCheck, IconX } from '@tabler/icons-react';
-import '../../app/index.css';
 import menuLogo from './menu-logo.png';
 import menuGif from './menu-gif.gif';
+import { ShareLinks } from '../../app/WonderMenu/ShareLinks/ShareLinks';
 
 export const WONDER_ACTIVE_STORAGE_KEY = 'wonder-active';
 
@@ -29,7 +29,7 @@ export const ExtensionMenu: React.FC = () => {
   };
 
   return (
-    <Paper py={40} px={15}>
+    <Paper miw={350} py={40} px={15}>
       <Center maw={400} mx="auto">
         <Flex
           maw={500}
@@ -76,6 +76,7 @@ export const ExtensionMenu: React.FC = () => {
           {/* <Text fz="sm" ta={'center'} color={'grey'}>
             Share with us your feedback feedback@wonder.ai
           </Text> */}
+          <ShareLinks />
         </Flex>
       </Center>
     </Paper>

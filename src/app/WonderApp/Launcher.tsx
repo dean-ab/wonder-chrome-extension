@@ -56,11 +56,11 @@ export const Launcher: React.FC = () => {
           onMouseUp={(e) => e.preventDefault()}
           style={{
             position: strategy,
-            left: x ?? 0,
-            top: y ?? 0,
+            left: x ?? '50%',
+            top: y ?? '50%',
             zIndex: '2147483647',
             color: 'white',
-            transition: 'all 0.2s ease-in-out',
+            transition: 'all 0.3s ease-in-out',
           }}
         >
           <ShadowDom>
