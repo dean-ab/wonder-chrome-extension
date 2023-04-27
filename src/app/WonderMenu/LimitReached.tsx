@@ -1,10 +1,13 @@
 import React from 'react';
 import { Text, Flex, Button, Overlay, Alert } from '@mantine/core';
 import { ShareLinks } from './ShareLinks/ShareLinks';
+import useLimiter from '../hooks/useLimiter';
 
 interface IProps {}
 
 export const LimitReached: React.FC<IProps> = ({}) => {
+  const { resetCount } = useLimiter();
+
   return (
     <Overlay color="white" opacity={0.95}>
       <Flex
@@ -25,7 +28,7 @@ export const LimitReached: React.FC<IProps> = ({}) => {
             your friends 🤗.
           </Text>
           <Flex px="xs" gap={8}>
-            <ShareLinks withPromotionText={false} />
+            <ShareLinks withPromotionText={false} onShare={resetCount} />
           </Flex>
         </>
       </Flex>

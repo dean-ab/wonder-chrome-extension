@@ -27,9 +27,10 @@ const useStyles = createStyles(() => ({
   },
 }));
 
-export const ShareLinks: React.FC<{ withPromotionText?: boolean }> = ({
-  withPromotionText = true,
-}) => {
+export const ShareLinks: React.FC<{
+  withPromotionText?: boolean;
+  onShare?: () => void;
+}> = ({ withPromotionText = true, onShare }) => {
   const { classes } = useStyles();
   const shareUrl = 'http://github.com';
   const title = 'GitHub';
@@ -42,7 +43,7 @@ export const ShareLinks: React.FC<{ withPromotionText?: boolean }> = ({
           social media!
         </Text>
       )}
-      <Flex w={'100%'} gap={'1rem'} justify={'center'}>
+      <Flex w={'100%'} gap={'1rem'} justify={'center'} onClick={onShare}>
         <FacebookShareButton
           url={shareUrl}
           quote={title}

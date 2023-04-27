@@ -5,6 +5,7 @@ export const WONDER_COUNTER_STORAGE_KEY = 'wonder-counter';
 interface UseLimiterHook {
   submitCount: number;
   incrementSubmitCount: () => void;
+  resetCount: () => void;
 }
 
 const useLimiter = (): UseLimiterHook => {
@@ -29,13 +30,19 @@ const useLimiter = (): UseLimiterHook => {
     });
   };
 
+  const resetCount = () => {
+    setSubmitCount({
+      [getStartOfToday()]: 0,
+    });
+  };
+
   useEffect(() => {
     chrome?.storage?.local?.set({ [WONDER_COUNTER_STORAGE_KEY]: submitCount });
   }, [submitCount]);
 
   const count = submitCount[getStartOfToday()];
 
-  return { submitCount: count, incrementSubmitCount };
+  return { submitCount: count, incrementSubmitCount, resetCount };
 };
 
 const getStartOfToday = (): string => {
