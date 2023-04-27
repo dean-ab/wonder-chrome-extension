@@ -1,12 +1,12 @@
 import React from 'react';
 import { Text, Flex, Button, Overlay, Alert } from '@mantine/core';
-import { IconChevronLeft, IconAlertCircle } from '@tabler/icons-react';
+import { ShareLinks } from './ShareLinks/ShareLinks';
 
 interface IProps {}
 
 export const LimitReached: React.FC<IProps> = ({}) => {
   return (
-    <Overlay color="white" opacity={0.9}>
+    <Overlay color="white" opacity={0.95}>
       <Flex
         mt={20}
         gap="xl"
@@ -25,18 +25,7 @@ export const LimitReached: React.FC<IProps> = ({}) => {
             your friends 🤗.
           </Text>
           <Flex px="xs" gap={8}>
-            <Button
-              variant="gradient"
-              gradient={{ from: 'indigo', to: 'cyan' }}
-            >
-              Indigo cyan
-            </Button>
-            <Button
-              variant="gradient"
-              gradient={{ from: 'teal', to: 'lime', deg: 105 }}
-            >
-              Lime green
-            </Button>
+            <ShareLinks withPromotionText={false} />
           </Flex>
         </>
       </Flex>

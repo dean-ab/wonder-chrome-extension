@@ -27,17 +27,21 @@ const useStyles = createStyles(() => ({
   },
 }));
 
-export const ShareLinks: React.FC = () => {
+export const ShareLinks: React.FC<{ withPromotionText?: boolean }> = ({
+  withPromotionText = true,
+}) => {
   const { classes } = useStyles();
   const shareUrl = 'http://github.com';
   const title = 'GitHub';
 
   return (
     <Grid className={classes.container}>
-      <Text align="center" mb={'1rem'} weight={700} color={'#7A64F7'}>
-        Spread the word and share our app with your friends and family on social
-        media!
-      </Text>
+      {withPromotionText && (
+        <Text align="center" mb={'1rem'} weight={700} color={'#7A64F7'}>
+          Spread the word and share our app with your friends and family on
+          social media!
+        </Text>
+      )}
       <Flex w={'100%'} gap={'1rem'} justify={'center'}>
         <FacebookShareButton
           url={shareUrl}
