@@ -3,6 +3,7 @@ import { Image, Flex, Group, Switch, Text, Center, Paper } from '@mantine/core';
 import { IconCheck, IconX } from '@tabler/icons-react';
 import menuLogo from './menu-logo.png';
 import menuGif from './menu-gif.gif';
+import { ShareLinks } from '../../app/WonderMenu/ShareLinks/ShareLinks';
 
 export const WONDER_ACTIVE_STORAGE_KEY = 'wonder-active';
 
@@ -75,6 +76,7 @@ export const ExtensionMenu: React.FC = () => {
           {/* <Text fz="sm" ta={'center'} color={'grey'}>
             Share with us your feedback feedback@wonder.ai
           </Text> */}
+          <ShareLinks />
         </Flex>
       </Center>
     </Paper>
