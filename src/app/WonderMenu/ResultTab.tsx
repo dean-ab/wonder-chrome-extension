@@ -1,14 +1,5 @@
 import React, { useEffect } from 'react';
-import {
-  Text,
-  Tabs,
-  Flex,
-  Button,
-  Container,
-  Loader,
-  ActionIcon,
-  CopyButton,
-} from '@mantine/core';
+import { Text, Tabs, Flex, Button, Loader, CopyButton } from '@mantine/core';
 import { IconCopy, IconChevronLeft, IconCheck } from '@tabler/icons-react';
 import { Events, useAnalytics } from '../../analytics';
 

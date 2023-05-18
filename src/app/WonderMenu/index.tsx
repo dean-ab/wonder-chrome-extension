@@ -8,6 +8,8 @@ import { ResultTab } from './ResultTab';
 import { RequestParam } from '../../types/RequestParams';
 import { Events, useAnalytics } from '../../analytics';
 import { ErrorPage } from './ErrorPage';
+import useLimiter from '../hooks/useLimiter';
+import { LimitReached } from './LimitReached';
 
 export type ViewMode = 'prompt' | 'result' | 'error';
 
@@ -32,7 +34,9 @@ export const Menu: React.FC<IProps> = ({
   const [viewMode, setViewMode] = useState<ViewMode>('prompt');
   const [result, setResult] = useState<string>('');
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isOverlayVisible, setIsOverlayVisible] = useState<boolean>(false);
   const analytics = useAnalytics();
+  const { submitCount, incrementSubmitCount } = useLimiter();
 
   const onAnotherSuggestion = async () => {
     const { name, params } = prevParams.current; // get previous params
@@ -45,6 +49,10 @@ export const Menu: React.FC<IProps> = ({
     isAnotherSuggesion?: boolean,
   ) => {
     if (!selectedText) return;
+    if (submitCount > 10) {
+      setIsOverlayVisible(true);
+      return;
+    }
     setViewMode('result');
     setIsLoading(true);
 
@@ -71,6 +79,7 @@ export const Menu: React.FC<IProps> = ({
     }
     setIsLoading(false);
     prevParams.current = { name, params };
+    incrementSubmitCount();
   };
 
   const onReplaceSelection = () => {
@@ -156,6 +165,7 @@ export const Menu: React.FC<IProps> = ({
             />
           )
         )}
+        {isOverlayVisible && <LimitReached />}
       </Tabs>
     </div>
   );
