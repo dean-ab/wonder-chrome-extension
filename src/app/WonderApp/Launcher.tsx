@@ -15,6 +15,14 @@ export const Launcher: React.FC = () => {
 
   useEffect(() => {
     chrome?.storage?.local.get([WONDER_ACTIVE_STORAGE_KEY], (result) => {
+      if (result[WONDER_ACTIVE_STORAGE_KEY] === undefined) {
+        chrome.storage.local
+          .set({ [WONDER_ACTIVE_STORAGE_KEY]: true })
+          .then(() => {
+            setIsAppEnabled(true);
+            return;
+          });
+      }
       setIsAppEnabled(!!result[WONDER_ACTIVE_STORAGE_KEY]);
     });
   }, [chrome?.storage?.local.get([WONDER_ACTIVE_STORAGE_KEY])]);
@@ -44,6 +52,7 @@ export const Launcher: React.FC = () => {
 
     setOpen(!!selection.textContent);
   }, [selection.textContent, selection.clientRect, positionReference]);
+  console.log('FLAG __ Launcher[47]', isAppEnabled);
 
   return (
     <>
