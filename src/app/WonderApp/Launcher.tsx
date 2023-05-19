@@ -52,7 +52,6 @@ export const Launcher: React.FC = () => {
 
     setOpen(!!selection.textContent);
   }, [selection.textContent, selection.clientRect, positionReference]);
-  console.log('FLAG __ Launcher[47]', isAppEnabled);
 
   return (
     <>
