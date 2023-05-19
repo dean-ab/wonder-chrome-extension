@@ -27,13 +27,15 @@ const useStyles = createStyles(() => ({
   },
 }));
 
+const title = '';
+const shareUrl = `If you're seeking a tool to help you edit, read and write better and faster, then Wonder is a must-try.\n
+Visit https://www.getwonderai.com/ to learn more about this amazing tool, and the best part? It's absolutely free!`;
+
 export const ShareLinks: React.FC<{
   withPromotionText?: boolean;
   onShare?: () => void;
 }> = ({ withPromotionText = true, onShare }) => {
   const { classes } = useStyles();
-  const shareUrl = 'http://github.com';
-  const title = 'GitHub';
 
   return (
     <Grid className={classes.container}>
