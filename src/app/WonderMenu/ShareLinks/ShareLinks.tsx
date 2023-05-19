@@ -27,9 +27,9 @@ const useStyles = createStyles(() => ({
   },
 }));
 
-const title = '';
-const shareUrl = `If you're seeking a tool to help you edit, read and write better and faster, then Wonder is a must-try.\n
+const title = `If you're seeking a tool to help you edit, read and write better and faster, then Wonder is a must-try.\n
 Visit https://www.getwonderai.com/ to learn more about this amazing tool, and the best part? It's absolutely free!`;
+const shareUrl = `https://www.getwonderai.com/`;
 
 export const ShareLinks: React.FC<{
   withPromotionText?: boolean;
@@ -67,7 +67,11 @@ export const ShareLinks: React.FC<{
         >
           <TelegramIcon size={32} round />
         </TelegramShareButton>
-        <LinkedinShareButton url={shareUrl} className={classes.shareButton}>
+        <LinkedinShareButton
+          url={shareUrl}
+          summary={title}
+          className={classes.shareButton}
+        >
           <LinkedinIcon size={32} round />
         </LinkedinShareButton>
         <RedditShareButton
