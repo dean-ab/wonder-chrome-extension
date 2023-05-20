@@ -22,12 +22,14 @@ const useLimiter = (): UseLimiterHook => {
   }, []);
 
   const incrementSubmitCount = () => {
-    setSubmitCount({
+    const newSubmitCount = {
       [getStartOfToday()]:
         submitCount?.[getStartOfToday()] > 0
           ? submitCount?.[getStartOfToday()] + 1
           : 1,
-    });
+    };
+    setSubmitCount(newSubmitCount);
+    chrome?.storage?.local?.set({ [WONDER_COUNTER_STORAGE_KEY]: submitCount });
   };
 
   const resetCount = () => {
@@ -35,10 +37,6 @@ const useLimiter = (): UseLimiterHook => {
       [getStartOfToday()]: 0,
     });
   };
-
-  useEffect(() => {
-    chrome?.storage?.local?.set({ [WONDER_COUNTER_STORAGE_KEY]: submitCount });
-  }, [submitCount]);
 
   const count = submitCount[getStartOfToday()];
 

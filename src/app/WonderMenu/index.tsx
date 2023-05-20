@@ -49,6 +49,7 @@ export const Menu: React.FC<IProps> = ({
     isAnotherSuggesion?: boolean,
   ) => {
     if (!selectedText) return;
+
     if (submitCount > 10) {
       setIsOverlayVisible(true);
       return;

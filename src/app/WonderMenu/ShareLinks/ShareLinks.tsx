@@ -68,8 +68,8 @@ export const ShareLinks: React.FC<{
           <TelegramIcon size={32} round />
         </TelegramShareButton>
         <LinkedinShareButton
+          source={title}
           url={shareUrl}
-          summary={title}
           className={classes.shareButton}
         >
           <LinkedinIcon size={32} round />
