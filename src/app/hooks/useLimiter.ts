@@ -23,18 +23,28 @@ const useLimiter = (): UseLimiterHook => {
 
   const incrementSubmitCount = () => {
     const newSubmitCount = {
+      ...submitCount,
       [getStartOfToday()]:
         submitCount?.[getStartOfToday()] > 0
           ? submitCount?.[getStartOfToday()] + 1
           : 1,
     };
+
     setSubmitCount(newSubmitCount);
-    chrome?.storage?.local?.set({ [WONDER_COUNTER_STORAGE_KEY]: submitCount });
+    chrome?.storage?.local?.set({
+      [WONDER_COUNTER_STORAGE_KEY]: newSubmitCount,
+    });
   };
 
   const resetCount = () => {
-    setSubmitCount({
+    const resetSubmitCount = {
+      ...submitCount,
       [getStartOfToday()]: 0,
+    };
+
+    setSubmitCount(resetSubmitCount);
+    chrome?.storage?.local?.set({
+      [WONDER_COUNTER_STORAGE_KEY]: resetSubmitCount,
     });
   };
 

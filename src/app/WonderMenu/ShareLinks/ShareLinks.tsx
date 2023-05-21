@@ -49,6 +49,7 @@ export const ShareLinks: React.FC<{
         <FacebookShareButton
           url={shareUrl}
           quote={title}
+          onClick={onShare}
           className={classes.shareButton}
         >
           <FacebookIcon size={32} round />
@@ -56,6 +57,7 @@ export const ShareLinks: React.FC<{
         <TwitterShareButton
           url={shareUrl}
           title={title}
+          onClick={onShare}
           className={classes.shareButton}
         >
           <TwitterIcon size={32} round />
@@ -63,6 +65,7 @@ export const ShareLinks: React.FC<{
         <TelegramShareButton
           url={shareUrl}
           title={title}
+          onClick={onShare}
           className={classes.shareButton}
         >
           <TelegramIcon size={32} round />
@@ -70,6 +73,7 @@ export const ShareLinks: React.FC<{
         <LinkedinShareButton
           source={title}
           url={shareUrl}
+          onClick={onShare}
           className={classes.shareButton}
         >
           <LinkedinIcon size={32} round />
@@ -79,6 +83,7 @@ export const ShareLinks: React.FC<{
           title={title}
           windowWidth={660}
           windowHeight={460}
+          onClick={onShare}
           className={classes.shareButton}
         >
           <RedditIcon size={32} round />
