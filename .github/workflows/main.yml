@@ -31,6 +31,18 @@ jobs:
       - name: Install webstore cli
         run: npm install -g chrome-webstore-upload-cli
 
+      - name: Debug Secrets
+        run: |-
+          echo "Extension ID: $EXTENSION_ID"
+          echo "Client ID exists: $(if [ ! -z "$CI_GOOGLE_CLIENT_ID" ]; then echo 'Yes'; else echo 'No'; fi)"
+          echo "Client Secret exists: $(if [ ! -z "$CI_GOOGLE_CLIENT_SECRET" ]; then echo 'Yes'; else echo 'No'; fi)"
+          echo "Refresh Token exists: $(if [ ! -z "$CI_GOOGLE_REFRESH_TOKEN" ]; then echo 'Yes'; else echo 'No'; fi)"
+
       - name: Upload to Chrome Web Store
         run: |-
-          chrome-webstore-upload upload --source chrome-extension-${{ github.sha }}.zip --extension-id ${{ env.EXTENSION_ID }} --client-id ${{ env.CI_GOOGLE_CLIENT_ID }} --client-secret ${{ env.CI_GOOGLE_CLIENT_SECRET }} --refresh-token ${{ env.CI_GOOGLE_REFRESH_TOKEN }}
+          chrome-webstore-upload upload \
+            --source chrome-extension-${{ github.sha }}.zip \
+            --extension-id "$EXTENSION_ID" \
+            --client-id "$CI_GOOGLE_CLIENT_ID" \
+            --client-secret "$CI_GOOGLE_CLIENT_SECRET" \
+            --refresh-token "$CI_GOOGLE_REFRESH_TOKEN"
